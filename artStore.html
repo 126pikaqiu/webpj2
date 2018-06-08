@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="keywords" content="中外艺术品"/>
+    <meta name="description" content="艺术品之家（Art Store），为用户提供各类精美手工艺术品、创意生活用品、名人画作等，为您带来全新的创意购物体验。">
+    <link rel="icon" href="templates/img/web_img/favicon.ico"/>
+    <link rel="stylesheet" href="templates/css/main.css">
+    <link rel="stylesheet" href="templates/css/artStore.css">
+    <title>艺术品之家</title>
+    <script src="templates/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  </head>
+  <body>
+    <div class="smc">
+      <div>
+        <div class="noEmpty">
+          <header>最新加入的商品</header>
+          <ul class="mcart-sigle">
+            <li>
+              <div class="img"><img src="" alt=""></div>
+              <div class="infor">
+                <h5 class="name">Irises</h5>
+                <h5 class="author">By 梵高</h5>
+                <h6 class="money">$21,000</h6>
+              </div>
+            </li>
+            <li>
+              <div class="img"><img src="" alt=""></div>
+              <div class="infor">
+                <h5 class="name">The Falling Fireworks</h5>
+                <h5 class="author">By 惠斯勒</h5>
+                <h6 class="money">$12,000</h6>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="empty">
+          <div><img src="templates/img/web_img/rcart.png" alt="cart"></div>
+          <br>
+          <div><h5>购物车空空如也</h5></div>
+        </div>
+      </div>
+    </div>
+    <div id="dialog" title="提示">
+      <h2></h2>
+      <button type="button" name="button">确认</button>
+    </div>
+    <div id="dialog-modal" title="注册">
+        <div id="dialog-register" title="注册">
+            <div class="form">
+                <form action="register.php" id="rform" method="post">
+                    <div class="form-item">
+                        <label>用　户　名</label>
+                        <input type="text" id="rform-account" name="regName" class="field" placeholder='请输入用户名'
+                               maxlength="20"/>
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">支持中文、字母、数字、“-”“_”的组合，6-20个字符</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>设 置 密 码</label>
+                        <input type="password" name="pwd" id="rform-pwd" class="field" placeholder="请设置密码"
+                               maxlength="20"/>
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">建议使用字母、数字和符号两种及以上的组合，6-20个字符</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>确 认 密 码</label>
+                        <input type="password" name="pwdRepeat" id="rform-equalTopwd" class="field"
+                               placeholder="确认密码" maxlength="20"/>
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">请再次输入密码</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>手 机 号 码</label>
+                        <input type="tel" name="tel" id="rform-mobile" class="field"
+                               placeholder="请输入手机号码" maxlength="11"/>
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png">完成验证后，你可以用该手机找回密码</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>邮　　　箱</label>
+                        <input type="email" name="email" id="rform-email" class="field"
+                               placeholder="请输入邮箱" />
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png">完成验证后，你可以使用该邮箱登录</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>邮箱验证码</label>
+                        <input type="text" id="rform-code" name="mobileCode" placeholder="验证码" maxlength="6"/>
+                        <a id="rcode">获取验证码</a>
+                    </div>
+
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">验证码</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-register">立即注册</button>
+                    </div>
+                </form>
+                <footer>
+                    <a href="register.html" class="hv-under" style="color:#333">网页版注册</a>&nbsp;&nbsp;&nbsp;
+                    <div class="have-account">已有账号？ <a href="javascript:;" class="hv-under re-signin" title="登录" style="color:#333">请登录</a></div>
+                </footer>
+            </div>
+        </div>
+        <div id="dialog-signin" title="登录">
+            <div class="form">
+                <div class="form-header">密码登录</div>
+                <div class="form-con">
+                    <form action="login.php" name="form" id="sform" method="POST">
+                        <div class="form-item" id="">
+                            <label><img src="templates/img/web_img/user.png" class="iconfont" alt="用　户　名" title="用户名"></label>
+                            <input type="text" id="sform-account" name="regName" class="field"
+                                   onblur="this.placeholder='请输入用户名'" onfocus="placeholder=''"  placeholder="请输入用户名"/>
+                        </div>
+                        <div class="input-tip">
+                            <span class="tip"></span>
+                        </div>
+                        <div class="form-item">
+                            <label><img src="templates/img/web_img/pwd.png" class="iconfont" alt="密　　　码" title="密码"></label>
+                            <input type="password" name="pwd" id="sform-pwd" onblur="this.placeholder='请输入用户名'"
+                                   onfocus="placeholder=''"  class="field" placeholder="请输入密码"/>
+                        </div>
+                        <div class="input-tip">
+                            <span class="tip"></span>
+                        </div>
+                        <div class="form-item">
+                            <label>验 证 码</label>
+                            <input class="input-code" id="sform-code" maxlength="4" onblur="this.placeholder='请输入用户名'" onfocus="placeholder=''" type="text" name="mobileCode" placeholder="请输入验证码"/>
+                            <a id="scode" title="点击更换验证码" onclick="changecode()"></a>
+                        </div>
+                        <div class="input-tip">
+                            <span class="tip"></span>
+                        </div>
+                        <div>
+                            <button type="button" class="btn-signin">登  录</button>
+                        </div>
+                        <a href="signin.html" class="hv-under" style="color:#333">网页版登录</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav id="head-nav">
+        <div class="w">
+          <ul class="fr">
+            <li class="dt">
+              <a href="javascript:;" class="sign dt-link hv-red">您好，请登录</a>&nbsp;&nbsp;
+              <a href="javascript:;" class="style-red register">免费注册</a>
+            </li>
+            <li class="dt signin">
+              <a class="link-login dt-link">Hi <a href="javascript:;" title="点击查看各人信息"><span class="account hv-red"></span></a></a>&nbsp;&nbsp;
+              <a class="signout hv-red" href="javascript:;">退出登录</a>
+            </li>
+            <li class="spacer"></li>
+            <li class="dt">
+              <div class="dt-link hv-red"><a class="hv-red" href="../html/index.html">首页</a></div>
+            </li>
+            <li class="spacer"></li>
+            <li class="dt">
+              <div class="dt-link"><img src="templates/img/web_img/cart.png" alt="cart"><a class="hv-red cart" href="javascript:;">购物车<strong id="gooNumber">0</strong>件</a>
+                <i class=""></i></div>
+            </li>
+            <li class="spacer"></li>
+            <li class="dt">
+              <div class="dt-link hv-red"><a class="hv-red" href="../html/item.html">商品详情</a></div>
+              <div class=""></div>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div class="main">
+      <header>
+        <div class="txt-head">
+            <div class="logo-con">
+              <img src="templates/img/web_img/logo.jpg" height="80" width="80" alt="艺术品之家logo" title="艺术品之家">
+              <span class="title-uk">Art Store</span>
+              <span class="log-tit">艺家</span>
+            </div>
+            <div class="surf-header">
+                  <input type="text" name="" value="">
+                  <label><a href="search.html">搜 索</a></label>
+            </div>
+        </div>
+      </header>
+      <main>
+        <div class="left">
+          <h2>关于艺家</h2>
+          <ul class="artNav">
+            <li><a href="#aboutUs" >关于我们</a></li>
+            <li><a href="#contactUs" >联系我们</a></li>
+            <li><a href="#recruit" >人才招聘</a></li>
+            <li><a href="#business">商家入驻</a></li>
+            <li><a href="#advertisement">广告服务</a></li>
+            <li><a href="#links">友情链接</a></li>
+            <li><a href="#union">销售联盟</a></li>
+          </ul>
+        </div>
+        <div class="right">
+          <h1>艺术品之家</h1>
+          <h2 id="aboutUs">关于我们</h2>
+          <p>艺家于2004年正式涉足电商领域。2016年，艺家集团市场交易额达到9392亿元*，净收入达到2601亿元，
+            同比增长43%。艺家是中国收入规模最大的互联网企业。2016年7月，艺家入榜2016《财富》
+            全球500强，成为中国首家、唯一入选的互联网企业。</p>
+          <p>2014年5月，艺家集团在美国纳斯达克证券交易所正式挂牌上市，是中国第一个成功赴美上市的大型综合型电商平台，并成功跻身全球前十大互联网公司排行榜，
+            2015年7月，艺家凭借高成长性入选纳斯达克100指数和纳斯达克100平均加权指数。</p>
+          <h3>致力于成为为社会创造最大价值的企业</h3>
+          <p>艺家致力于成为一家为社会创造最大价值的公司。经过13年砥砺前行，艺家在商业领域一次又一次突破创新，
+            取得了跨越式发展。与此同时，艺家不忘初心，积极履行企业社会责任，在促进就业、提升社会效率、
+            反哺实体经济等方面不断为社会做出贡献。</p>
+          <p>截至2017年3月31日，艺家集团拥有超过12万名正式员工，并间接拉动众包配送员、乡村推广员、
+            中小企业职员等就业人数超过400万。2016年，艺家全面推进落实电商精准扶贫工作，通过品牌品质、
+            自营直采、地方特产、众筹扶贫等模式，在832个国家级贫困县扩展合作商家近5000家，
+            上线贫困地区商品近200万个，实现扶贫农产品销售额近百亿元。依托强大的物流基础设
+            施网络和供应链整合能力，艺家大幅提升了行业运营效率，降低了社会成本。在品质电商的理念下
+            ，艺家优化电商模式，精耕细作反哺实体经济，进一步助力供给侧改革。艺家以社会和环境为抓手整合
+            内外资源，与政府、媒体和公益组织协同创新，为用户、为合作伙伴、为员工、为环境、为社会创造共享价值。</p>
+            <h3>正道成功</h3>
+            <p>艺家坚持诚信经营，大量品牌直供从源头杜绝假货，对假冒伪劣商品“零容忍”，通过严审商家资质、严控进货渠道、自主研发质控系统等六大举措确保正品行货。
+              艺家坚守“正道成功”的价值取向，坚定地呼吁用合法方式获得商业成功。</p>
+            <p>2016年艺家重拳出击、实力反腐。推行实名公布反腐案例、设立反腐奖励专项基金、公布《艺家集团举报人保护和奖励制度》、
+              上线反腐网站 “廉洁艺家”等数项坚定、扎实的反腐举措，打造健康有序的商业环境。</p>
+            <p>艺家奉行客户为先、诚信、团队、创新、激情的价值观，期望成为全球最值得信赖的企业。</p>
+            <br>
+            <br>
+            <br>
+            <br>
+          <h2 id="contactUs">联系我们</h2>
+          <p>京东全国客服中心：<br>
+            联系页面暂无</p><br>
+          <p>联系电话：<br>
+            暂无</p>
+            <br>
+            <br>
+            <br>
+            <br>
+          <h2 id="recruit">人才招聘</h2>
+          <p>目前公司正处于起步阶段，缺少成员。公司只有本人一个，现任董事长，欢迎每一个人的加入。</p>
+          <br>
+          <br>
+          <br>
+          <br>
+          <h2 id="business">商家入驻</h2>
+          <p>目前公司正处于起步阶段，缺少成员。暂不开放商家入驻的功能，静待后面公司的强大。</p>
+          <br>
+          <br>
+          <br>
+          <br>
+          <h2 id="advertisement">广告服务</h2>
+          <p>目前公司正处于起步阶段，缺少成员。暂不开放广告服务的功能，静待后面公司的强大。</p>
+          <br>
+          <br>
+          <br>
+          <br>
+          <h2 id="links">友情链接</h2>
+          <p>提供友情链接是不可能的，这辈子都是不可能。</p>
+          <br>
+          <br>
+          <br>
+          <br>
+          <h2 id="union">销售联盟</h2>
+          <p>如果您能投入大量资金的话，销售联盟可以考虑。</p>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+      </main>
+      <div class="footer">
+        <div class="footer-main">
+        <footer>
+            <div class="foo-links">
+              <a rel="nofollow" target="_blank" href="artStore.html#aboutUs">
+                      关于我们
+                  </a> |
+              <a rel="nofollow" target="_blank" href="artStore.html#contactUs">
+                      联系我们
+                  </a> |
+              <a rel="nofollow" target="_blank" href="artStore.html#recruit">
+                      人才招聘
+                  </a> |
+              <a rel="nofollow" target="_blank" href="artStore.html#business">
+                      商家入驻
+                  </a> |
+              <a rel="nofollow" target="_blank" href="artStore.html#advertisement">
+                      广告服务
+                  </a> |
+              <a target="_blank" target="_blank" href="artStore.html#links">
+                      友情链接
+                  </a> |
+              <a target="_blank" target="_blank" href="artStore.html#union">
+                      销售联盟
+                  </a>
+            </div>
+            <div class="copyright">
+              Copyright&nbsp;&copy;&nbsp;2018-2030&nbsp;&nbsp;艺术品之家Art Store.com&nbsp;版权所有
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="templates/js/main.js"></script>
+  </body>
+</html>

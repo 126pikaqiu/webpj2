@@ -1,0 +1,354 @@
+div,span,li,body,p,input,img,i,h1,h2,h3,h4,nav,footer,ul,form,section{
+  margin:0;
+  padding:0;
+}
+body{
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size:14px;
+  min-width: 800px;
+  position: relative;
+}
+a{
+   text-decoration: none;
+   color: black;
+ }
+.main{
+   width:1200px;
+   background-color: #fff;
+   margin: 0;
+ }
+.footer{
+  text-align: center;
+  font-size:12px;
+  margin-top: 100px;
+  padding-bottom: 30px;
+}
+.footer-main{
+  width: 1200px;
+}
+.foo-links{
+  border-top: 1px solid #e6e6e6;
+  margin: 0 auto;
+  padding-top:30px;
+  padding-bottom: 15px;
+}
+.foo-links a{
+  color:#999;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+.foo-links a:hover{
+  text-decoration: underline;
+}
+#head-nav {
+  border-bottom:1px solid #ddd;
+}
+#head-nav .w{
+  background-color: #e3e4e5;
+  height:30px;
+  line-height: 30px;
+}
+.hv-red:hover{
+  color:red;
+}
+.hv-under:hover{
+  text-decoration: underline;
+}
+#head-nav li{
+  list-style-type: none;
+  float:left;
+}
+#head-nav li.spacer{
+  overflow:hidden;
+  margin:11px 5px 0;
+  width:2px;
+  height:10px;
+  background-color:#ccc;
+}
+.dt{
+  margin-right: 7px;
+  margin-left: 7px;
+}
+
+.dt-link{
+  background-color: #e3e4e5;
+  font-weight:400;
+}
+.dt-link img{
+  position: absolute;
+  width:27px;
+  height:17px;
+  background-color: transparent;
+  top:5px;
+}
+.dt-link img:hover{
+  border:1px solid #fff;
+}
+ul.fr{
+  margin-top:0;
+  float:right;
+  margin-right:10%;
+}
+#dialog-modal{
+  display:none;
+}
+#dialog-modal h2{
+  text-align: center;
+  margin-top:40px;
+}
+#dialog{
+  display: none;
+}
+#dialog button{
+  width: 100px;
+  margin: 5em;
+}
+.dt-link img{
+  width: 16px;
+}
+.style-red{
+  color:red;
+}
+#dialog-register{
+  display: none;
+}
+#dialog-signin{
+  display: none;
+}
+.rform .form-item{
+    border-style:solid;
+    border-width: 1px;
+    font-size: 27px;
+    border-color: #e3e4e5;
+    width: 100%;
+  }
+.rform .form-item label{
+    float:left;
+    width:90px;
+    height:52px;
+    line-height: 52px;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+.rform .form-item input{
+    border:0 none;
+    width: 140px;
+    height: 19px;
+    padding: 16px 0px 11px 20px;
+    font-size:14px;
+  }
+.rform .input-tip{
+    height:25px;
+  }
+.rform .input-tip .tip{
+  color:#feb96f;
+  height:34px;
+  font-size:14px;
+  margin-left:-25%;
+}
+.rform button{
+  width: 100%;
+  height:54px;
+  color:#fff;
+  border:0;
+  font-size:16px;
+  background: #e22;
+}
+#dialog-modal button:hover{
+  color:yellow;
+}
+#dialog-register .form{
+  background-color: #fff;
+  width: 400px;
+  padding:20px;
+}
+.rcode{
+  background-color: #e2e3e4;
+  float: right;
+  height: 48px;
+  line-height: 48px;
+  width:120px;
+  text-align: center;
+  font-size:14px;
+}
+.rform .i-status{
+  font-style: normal;
+  color:#c5c5c5;
+  height:34px;
+  font-size:12px;
+  margin-left:-25%;
+}
+.rform-code{
+  width:140px;
+}
+#dialog-register footer{
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+#dialog-signin form>a{
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+#dialog-register .have-account,a{
+    text-decoration: none;
+    color:#999;
+}
+#dialog-register .have-account{
+    display: inline;
+    margin-top:80px;
+    margin-right: 100px;
+}
+#dialog-signin .form{
+  padding: 10%;
+}
+#dialog-signin .form-header{
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.sform .form-item{
+  border-style:solid;
+  border-width: 1px;
+  font-size: 27px;
+  border-color: #e3e4e5;
+  background-color: white;
+}
+.sform .form-item label{
+  float:left;
+  height:48px;
+  line-height: 48px;
+  background-color: #ebeced;
+  font-size: 14px;
+}
+.sform .iconfont{
+  width: 48px;
+  height:48px;
+}
+.sform .form-item input{
+  border:0 none;
+  width: 180px;
+  height: 19px;
+  padding: 16px 0px 11px 10px;
+  font-size:14px;
+}
+.sform input.input-code{
+  width:90px;
+}
+.sform .input-tip{
+  color:#feb96f;
+  height:20px;
+  font-size:15px;
+  padding-bottom:20px;
+}
+.sform button{
+  width: 100%;
+  height:54px;
+  color:#fff;
+  border:0;
+  font-size:16px;
+  background: #e22;
+}
+
+.sform .scode{
+  background-color: #e2e3e4;
+  float: right;
+  height: 48px;
+  line-height: 48px;
+  width:100px;
+  text-align: center;
+}
+.sform .tip{
+  margin-left:-13%;
+}
+.smc{
+  position: absolute;
+  top:-50%;
+}
+.smc>div{
+  width: 200px;
+  height:250px;
+  border:1px solid black;
+  overflow: scroll;
+  background-color: #fff;
+}
+.smc li{
+  border:1px solid #e2e3e4;
+  padding: 10px;
+}
+.smc img{
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.smc header{
+  font-weight: 600;
+  margin: 10px;
+}
+.smc h5,h6{
+  padding: 0;
+  margin:0;
+  white-space: nowrap;
+}
+.smc .empty {
+    display: none;
+}
+.smc .empty img{
+  width: 100px;
+  height: 100px;
+}
+.smc .name{
+  white-space: normal;
+  font-size: 10px;
+}
+.smc .author{
+  font-weight: lighter;
+  font-size: 8px;
+}
+.smc .money{
+  font-style: italic;
+  color:red;
+}
+.rform .input-tip i{
+  display: none;
+}
+.rform .input-tip img{
+  height: 15px;
+  background-color: #e2e3e4;
+  border-radius: 50%;
+  margin-top:2px;
+}
+img.check{
+  height:20px;
+  border-radius: 50%;
+  background-color: #4ccd61;
+  display: none;
+}
+.log-img{
+  height: 120px;
+  width: 120px;
+}
+.account-img{
+  height:20px;
+  width: 20px;
+  background-color: transparent;
+  position: absolute;
+  top:5px;
+}
+.signout{
+  margin-left: 15px;
+}
+.cart{
+  margin-left: 20px;
+}
+a.searchTrigger{
+  color:#fff;
+}
+#type{
+  display: none;
+}
+.dis-none{
+  display: none;
+}

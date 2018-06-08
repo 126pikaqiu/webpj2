@@ -1,0 +1,156 @@
+
+.surf-header{
+  margin-top: -40px;
+  margin-right:40px;
+  float: right;
+  width:300px;
+  background-color: #ff0036;
+}
+.surf-header label{
+  height: 28px;
+  line-height: 30px;
+  font-size: 14px;
+}
+.surf-header label a{
+  color:#fff;
+}
+.surf-header input{
+  width:250px;
+  height:23px;
+  margin:0px 1px 3px 3px;
+}
+.title-uk{
+  font-size: 40px;
+  margin-left: 7px;
+}
+.log-tit{
+  font-size: 25px;
+  margin-left: 7px;
+}
+.main{
+  margin:0 10%;
+}
+.footer{
+  clear: both;
+  margin:0 10%;
+}
+.crumbs{
+  display:inline;
+  padding-left: 1em;
+}
+.crumbs li{
+  display: inline;
+}
+aside button{
+  background-color: #8cdcfa;
+  padding: 0.2em 2em;
+  margin-right: 1em;
+}
+aside button img{
+  width: 16px;
+}
+.img{
+  float: left;
+  margin-right: 3em;
+}
+#secOne{
+  display: inline;
+  float: left;
+  max-width: 500px;
+}
+.aside-left{
+  margin-top: 4em;
+  float: left;
+}
+.aside-left h1{
+  font-size: 30px;
+  font-family: "Garamond";
+  font-style: italic;
+}
+.aside-left p{
+  font-family: "times new roman";
+  font-style: italic;
+  margin:1em 0;
+}
+
+p.description{
+  font-style: normal;
+  font-family: "楷体";
+}
+.money{
+  color:red;
+}
+table{
+  border-collapse: collapse;
+  margin-top: 2em;
+  border:1px solid;
+}
+table td{
+  font-family: "楷体";
+  border-top:1px solid;
+  padding:1em 6em 1em 1em;
+}
+table th{
+  padding: 0.6em 0;
+  background-color: #e3e3e3;
+}
+.aside-right{
+  float: right;
+  margin-top: 2em;
+  margin-bottom: 5em;
+}
+.aside-right table{
+  border:1px solid #e0f4f4;
+  margin-top: 0;
+  margin-bottom: 2em;
+}
+.aside-right td{
+  border:1px solid #e0f4f4;
+  text-align: center;
+  width:180px;
+  padding: 1em;
+}
+.aside-right th{
+  background-color: #e0f4f4;
+}
+#normal{
+    overflow: hidden;
+    width:340px;
+    height:500px;
+    border:1px solid #000;
+}
+#normal img{
+    width:100%;
+    height:100%;
+}
+#show{
+    width:130px;
+    height:130px;
+    background:#FF0;
+    opacity:0.3;
+    position:absolute;
+    top:0;
+    left:0;
+    cursor:move;
+    display:none;
+}
+#big{
+  display:none;
+  width:260px;
+  height:260px;
+  overflow:hidden;
+  position:absolute;
+  top:170px;
+  left:500px;
+}
+#big>img{
+    position:absolute;
+    top:0;left:0;
+    width:680px;
+    height:1000px;
+}
+.log-img{
+    height: 80px;
+    width: 80px;
+}
+

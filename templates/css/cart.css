@@ -1,0 +1,266 @@
+.txt-head{
+  margin:0 7% 0 0;
+}
+#container{
+  position: relative;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+.surf-header{
+  margin-top: -40px;
+  margin-right:40px;
+  float: right;
+  width:300px;
+  background-color: #ff0036;
+}
+.surf-header label{
+  height: 28px;
+  color:#fff;
+  line-height: 30px;
+  font-size: 14px;
+}
+.surf-header input{
+  width:250px;
+  height:23px;
+  margin:0px 1px 3px 3px;
+}
+.lay-out{
+  margin-top: 50px;
+  width:1200px;
+  /* border-top:2px solid #7f7f7f; */
+}
+.title-uk{
+  font-size: 40px;
+  margin-left: 7px;
+}
+.log-tit{
+  font-size: 25px;
+  margin-left: 7px;
+}
+.main{
+  margin-left: 10%;
+  position: relative;
+}
+#empty {
+    padding: 88px 0 100px 156px;
+    background: url(https://gtd.alicdn.com/tps/i3/T1TvXUXnNjXXXXXXXX-100-100.png) no-repeat 40px 86px;
+    position: relative;
+}
+.goods{
+  padding: 5em;
+  border:1px solid #e2e3e4;
+  background-color: #e3e4e5;
+  margin: 0 10%;
+}
+.del{
+  background-color: #fab4aa;
+  margin-left:4em;
+  width: 120px;
+}
+
+.price{
+  padding: 0 30px;
+  background-color: #8cdcfa;
+}
+#secOne{
+  margin-bottom: 7%;
+}
+.crumbs{
+  display:inline;
+  padding-left: 1em;
+}
+.crumbs li{
+  display: inline;
+}
+.lay-item{
+  padding: 50px;
+  height:154px;
+  background-color: #fffac8;
+  margin-bottom: 1em;
+}
+.lay-title{
+  font-size: 30px;
+  font-family: "times new roman";
+  font-style: italic;
+}
+.author{
+  margin-top:1em;
+  font-family: "楷体";
+  font-size:20px;
+}
+.description{
+  font-size: 15px;
+  margin-top:0.4em;
+  margin-bottom: 0.4em;
+}
+.lay-img{
+  float: left;
+  margin-right:50px;
+}
+.lay-footer{
+  margin:10% 3% 0;
+}
+.p-skip a,.p-num a{
+  line-height: 36px;
+  height:36px;
+  color:#333;
+  border:1px solid #ddd;
+  background-color: #f7f7f7;
+  margin-right:5px;
+  padding:8px 15px;
+}
+a.curr{
+  color:#e4393c;
+  border:none;
+  padding: 1px 15px;
+  background-color: transparent;
+}
+.lay-footer em{
+  font-weight: 800;
+  font-style: normal;
+}
+.p-skip{
+  margin-left:10px;
+}
+.input-txt{
+  text-align: center;
+  height:36px;
+  width:36px;
+  border:1px solid #ccc;
+}
+#empty{
+  display: none;
+}
+.canDel{
+  visibility: hidden;
+  border:1px solid #fcd3b6;
+  margin:0 10%;
+  margin-bottom: 3%;
+  padding:2px;
+  background-color: #fff8d9;
+}
+.canDel p{
+  padding: 0.3em 1.5em;
+  background-color: #fff;
+}
+.buy-bt button{
+  padding: 0.5em;
+  background-color: #a0ebc8;
+  float: right;
+}
+
+img.logo{
+  height: 80px;
+  width: 80px;
+}
+div.cart-store{
+  position: absolute;
+  right:80px;
+  top:0;
+}
+
+#container{
+  font-size: 12px;
+}
+div.shop{
+  border-bottom: solid 1px;
+}
+div.item-list{
+  height:140px;
+}
+div.cart-thead{
+  background-color: #f3f3f3;
+  border: solid 0.3px #f1f1f1;
+}
+div.column{
+  margin-right: 80px;
+  line-height: 50px;
+  height:50px;
+  display: inline;
+}
+.shop{
+  height: 25px;
+  line-height: 25px;
+}
+div.cell{
+  max-width: 330px;
+  margin-right: 110px;
+  display: inline-block;
+  vertical-align: middle;
+}
+div.p-checkbox{
+    margin-right: 10px;
+}
+.p-goods{
+  height:120px;
+}
+.p-goods img{
+  height: 80px;
+  width: 80px;
+  float: left;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.p-goods .p-name{
+  width: 300px;
+  margin: 20px 200px 50px 90px;
+}
+.p-name a{
+  width: 120px;
+}
+.jdcheckbox{
+  margin-left: 10px;
+}
+.p-checkbox{
+  margin-top: -60px;
+}
+.item-list{
+  border: solid 0.4px #f1f1f1;
+  border-top: none;
+  background-color: #fff4e8;
+}
+div.options-box>div{
+  display: inline-block;
+}
+div.options-box{
+  margin-top: 20px;
+  height: 45px;
+  border: solid 0.3px #f1f1f1;
+}
+div.clr{
+  width:300px;
+}
+div.btn-area{
+  text-align: center;
+  vertical-align: center;
+  width: 120px;
+  background-color: #e64346;
+  height: 50px;
+  float: right;
+}
+div.btn-area a{
+  font-size: 20px;
+  color: white;
+  font-weight: bolder;
+  display: inline-block;
+  height: 30px;
+  margin-top: 10px;
+}
+div.p-ops{
+  margin-left: 20px;
+}
+#container{
+  margin-top: 80px;
+}
+.cart-filter-bar span{
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+}
+.amount-sum span,.sumPrice{
+  color:#e64346;
+  font-size: 20px;
+}
+.amount-sum{
+  margin-right: 20px;
+}

@@ -1,0 +1,142 @@
+body{
+  background-color: #e3e4e5;
+}
+.main{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.logo-con{
+  float:left;
+}
+.logo-con img{
+  margin-top: -30px;
+}
+.surf-header{
+  margin-right:60px;
+  float: right;
+  width:500px;
+  margin-top:50px;
+  background-color: #ff0036;
+}
+.surf-header label{
+  height: 40px;
+  color:#fff;
+  line-height: 40px;
+  font-size: 20px;
+  padding: 30px 20px;
+}
+.surf-header label a{
+  color: #fff;
+}
+.title{
+  margin-left:40px;
+  float:left;
+  margin-top:10px;
+}
+.title-uk{
+  font-size: 25px;
+  font-style: oblique;
+  margin-left:25px;
+}
+.title-cn{
+  font-weight: bolder;
+  margin-top: 10px;
+  font-size: 30px;
+  font-family:"楷体";
+}
+.txt-head{
+  width:1200px;
+  height:80px;
+}
+.surf-header input{
+  width:400px;
+  height:36px;
+  margin:0px 1px 3px 3px;
+}
+.surf-body{
+  margin-top: 100px;
+}
+.surf-body li{
+  float:left;
+  margin-left:150px;
+  list-style-type: none;
+}
+.lay-out{
+  margin-top: 150px;
+  border:1px solid #7f7f7f;
+}
+.lay-head{
+  width:1200px;
+  background-color: #e3e4e5;
+  float: right;
+}
+.lay-head div{
+  margin-left: 50px;
+}
+.lay-main{
+  height:1500px;
+}
+.lay-footer{
+  margin:0 3%;
+}
+.p-skip a,.p-num a{
+  line-height: 36px;
+  height:36px;
+  color:#333;
+  border:1px solid #ddd;
+  background-color: #f7f7f7;
+  margin-right:5px;
+  padding:8px 15px;
+}
+a.curr{
+  color:#e4393c;
+  border:none;
+  padding: 1px 15px;
+  background-color: transparent;
+}
+.lay-footer em{
+  font-weight: 800;
+  font-style: normal;
+}
+.p-skip{
+  margin-left:10px;
+}
+.input-txt{
+  text-align: center;
+  height:36px;
+  width:36px;
+  border:1px solid #ccc;
+}
+.lay-item{
+  padding: 2em 4em 4em 2em;
+  border: 2px solid #f6f6df;
+  float: left;
+  height:17%;
+  width:22%;
+  margin-top: 0.5%;
+  margin-left:3%;
+  background-color: #fefede;
+}
+.lay-item img{
+  width:120px;
+  height:120px;
+  float:left;
+  margin-right: 3em;
+  margin-bottom: 2em;
+}
+.lay-item span{
+  font-family: "times new roman";
+  font-style: italic;
+}
+.lay-item p{
+  margin-top:2em;
+}
+.lay-des{
+  clear: left;
+  text-indent: 2em;
+}
+.lay-bt{
+  background-color: #98deef;
+  margin-top: 2em;
+  margin-left:4.8em;
+}

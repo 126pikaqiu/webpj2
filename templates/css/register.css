@@ -1,0 +1,74 @@
+.have-account,a{
+    text-decoration: none;
+    color:#999;
+}
+.have-account{
+    float:right;
+    margin-top:80px;
+    margin-right: 100px;
+}
+
+.logo img{
+  margin-left:100px;
+  height:100px;
+}
+#header{
+  width:100%;
+  height: 130px;
+  background: url("../img/web_img/grey.png") repeat-x left bottom;
+}
+.logo_tit{
+    height:34px;
+    line-height: 34px;
+    font-size: 24px;
+    color:#333;
+    padding-left: 20px;
+    margin-top: 34px;
+  }
+
+.form-img img{
+  height:500px;
+  width: 500px;
+}
+.form-img{
+  float: left;
+}
+.main{
+  width:830px;
+  margin-left:6% ;
+  margin-right: 20%;
+}
+.section{
+  width: 1200px;
+  margin:0 auto;
+}
+form{
+  width:400px;
+  margin-left: 480px;
+  padding-left: 90px;
+  margin-top: 8%;
+}
+.copyright{
+  margin-top: 20px;
+}
+.footer{
+  margin-top:20%;
+  margin-left:10%;
+  margin-right:10%;
+}
+
+.rform input.rform-code{
+  width:140px;
+}
+
+img.check{
+    height:20px;
+    border-radius: 50%;
+    background-color: #4ccd61;
+    display: none;
+}
+
+
+#type{
+    display: none;
+}

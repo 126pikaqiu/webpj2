@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>我的购物车</title>
+    <link rel="icon" href="templates/img/web_img/favicon.ico"/>
+    <link rel="stylesheet" href="templates/css/main.css">
+    <link rel="stylesheet" href="templates/css/cart.css">
+    <script src="templates/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  </head>
+  <body>
+    <div id="dialog" title="支付提示">
+      <h2></h2>
+      <button type="button" name="button">确认</button>
+    </div>
+    <div id="head-nav">
+        <div class="w">
+          <ul class="fr">
+            <li class="dt"><a href="index.html">艺家高兴为您服务</a></li>
+            <li class="dt signin">
+              <a class="link-login dt-link">Hi <a href="userInfor.html" target="_blank" title="点击查看各人信息"><span class="account hv-red"></span><img src="templates/img/web_img/account.png" class="account-img"></a></a>&nbsp;&nbsp;
+              <a class="signout hv-red" href="javascript:;">退出登录</a>
+            </li>
+            <li class="dt">
+              <a href="index.html" class="link-login dt-link hv-red">首页</a>
+            </li>
+            <li class="spacer"></li>
+            <li class="dt">
+              <div class="dt-link"><img src="templates/img/web_img/cart.png" alt="cart"><a class="hv-red cart" href="javascript:;">购物车<strong id="gooNumber">0</strong>件</a>
+                <i class=""></i></div>
+            </li>
+            <li class="spacer"></li>
+            <li class="dt" >
+              <div class="dt-link"><a href="search.html" target="_blank">搜索</a></div>
+              <div class=""></div>
+            </li>
+            <!--<li class="spacer"></li>-->
+            <!--<li class="dt">-->
+              <!--<div class="dt-link hv-red"><a class="hv-red" href="store">商品详情</a></div>-->
+            <!--</li>-->
+          </ul>
+        </div>
+    </div>
+    <div class="main">
+      <div class="txt-head">
+          <div class="logo-con">
+            <img src="templates/img/web_img/logo.jpg" class="logo" alt="艺术品之家logo" title="艺术品之家">
+            <span class="title-uk">Art Store</span>
+            <span class="log-tit  cart">购物车</span>
+          </div>
+          <div class="surf-header">
+                <input type="text" id="searchTrigger" value="">
+                <label><a href="javascript:;" class="searchTrigger">搜 索</a></label>
+          </div>
+      </div>
+      <div id="container" class="cart">
+        <div id="empty">
+          <h2>您的购物车还是空的，赶紧行动吧!</h2>
+        </div>
+          <div class="mycart">
+          <div class="w">
+          <div class="cart-filter-bar">
+        			<a href="//cart.jd.com/cart.action">
+        				<span>全部商品</span>
+        				<span class="number">3</span>
+        			</a>
+  	       <div class="cart-store">
+  		        <span class="label">配送至：</span>
+               <a class="address" href="userInfor.html" title="点击修改"></a>
+            </div>
+            <!-- <div class="w-line">
+          		<div class="floater" style="width: 80px; left: 108.65px;"></div>
+          	</div> -->
+          </div>
+        </div>
+      <div class="w cart-warp">
+          	<div class="cart-main">
+                <div class="cart-thead">
+                  <div class="column t-checkbox">
+                    <input type="checkbox" id="toggle-checkboxes_up" name="toggle-checkboxes" class="jdcheckbox allchecked" checked="checked">
+                    <label class="checked" for="toggle-checkboxes_up">全选</label>
+                  </div>
+                    <div class="column t-goods">商品</div>
+                    <div class="column t-props"></div>
+                    <div class="column t-props"></div>
+                    <div class="column t-props"></div>
+                    <div class="column t-price">单价</div>
+                    <div class="column t-quantity"></div>
+                    <div class="column t-sum"></div>
+                    <div class="column t-action">操作</div>
+                </div>
+                <div id="cart-list">
+                </div>
+            </div>
+            <div class="options-box">
+                <div class="select-all">
+                    <div class="cart-checkbox">
+                        <input type="checkbox" id="toggle-checkboxes_down" name="toggle-checkboxes" class="jdcheckbox allchecked" clstag="clickcart|keycount|xincart|cart_allCheckDown" checked="checked">
+                        <label class="checked" for="toggle-checkboxes_down">全选</label>
+                    </div>
+                </div>
+                <div class="operation">
+                    <a href="#none" class="remove-batch">删除选中的商品</a>
+                    <a href="#none" class="follow-batch">移到我的关注</a>
+                </div>
+                <div class="clr"></div>
+                <div class="amount-sum">
+                    已选择<span>5</span>件商品
+                </div>
+                <div class="price-sum">
+                    <div>
+                        <span class="txt txt-new">总价：</span>
+                        <span class="sumPrice">$0</span>
+                        <b class="ml5 price-tips"></b>
+                        <div class="price-tipsbox" style="left: 89.1625px; display: none;">
+                            <div class="ui-tips-main">不含运费及送装服务费</div>
+                            <span class="price-tipsbox-arrow"></span>
+                        </div>
+                        <br>
+                        <span class="txt">已节省：</span>
+                        <span class="totalRePrice">-$0.00</span>
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <a href="javascript:void(0);" onclick="return false;" class="submit-btn">
+                        去结算
+                    </a>
+                </div>
+            </div>
+      </div>
+             <div class="lay-footer">
+              <span class="p-num">
+                <a class="pn-prev hv-red hava-bor" href="javascript:;">
+                  <span>&lt;</span>
+                  <em>上一页</em>
+                </a>
+                <a href="javascript:;" class="curr paN">1</a>
+                <a href="javascript:;" class="paN">2</a>
+                <!-- <a href="javascript:;" class="paN">3</a>
+                <a href="javascript:;" class="paN">4</a>
+                <a href="javascript:;" class="paN">5</a>
+                <a href="javascript:;" class="paN">6</a>
+                <a href="javascript:;" class="paN">7</a>
+                <a href="javascript:;" class="paN">8</a>
+                <a href="javascript:;" class="paN">9</a>
+                <a href="javascript:;" class="paN">10</a>
+                <a href="javascript:;" class="paN">11</a>
+                <a href="javascript:;" class="paN">12</a> -->
+                <a class="pn-last hv-red hava-bor"  href="javascript:;">
+                  <em>下一页</em>
+                  <span>&gt;</span>
+                </a>
+              </span>
+              <span class="p-skip">
+                <em>
+                  共<b>2</b>页&nbsp;&nbsp;到第
+                </em>
+                <input type="text" class="input-txt" name="" value="1">
+                <em>页</em>&nbsp;&nbsp;
+                <a href="javascript:;">确定</a>
+              </span>
+          </div>
+          </div>
+        </section>
+    </div>
+      <div class="footer">
+        <div class="footer-main">
+        <footer>
+            <div class="foo-links">
+              <a rel="nofollow" target="_blank" href="artStore.html#aboutUs">
+                      关于我们
+                  </a> |
+              <a rel="nofollow" target="_blank" href="artStore.html#contactUs">
+                      联系我们
+                  </a> |
+              <a rel="nofollow" target="_blank" href="artStore.html#recruit">
+                      人才招聘
+                  </a> |
+              <a rel="nofollow" target="_blank" href="artStore.html#business">
+                      商家入驻
+                  </a> |
+              <a rel="nofollow" target="_blank" href="artStore.html#advertisement">
+                      广告服务
+                  </a> |
+              <a target="_blank" target="_blank" href="artStore.html#links">
+                      友情链接
+                  </a> |
+              <a target="_blank" target="_blank" href="artStore.html#union">
+                      销售联盟
+                  </a>
+            </div>
+            <div class="copyright">
+              Copyright&nbsp;&copy;&nbsp;2018-2030&nbsp;&nbsp;艺术品之家Art Store.com&nbsp;版权所有
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="smc">
+      <div>
+        <div class="noEmpty">
+          <header>最新加入的商品</header>
+          <ul class="mcart-sigle">
+            <li>
+              <div class="img"><img src="" alt=""></div>
+              <div class="infor">
+                <h5 class="name">Irises</h5>
+                <h5 class="author">By 梵高</h5>
+                <h6 class="money">$21,000</h6>
+              </div>
+            </li>
+            <li>
+              <div class="img"><img src="" alt=""></div>
+              <div class="infor">
+                <h5 class="name">The Falling Fireworks</h5>
+                <h5 class="author">By 惠斯勒</h5>
+                <h6 class="money">$12,000</h6>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="empty">
+          <div><img src="templates/img/web_img/rcart.png" alt="cart"></div>
+          <br>
+          <div><h5>购物车空空如也</h5></div>
+        </div>
+      </div>
+    </div> -->
+    <script src="templates/js/global.js"></script>
+     <script src="templates/js/main.js"></script>
+    <script src="templates/js/cart.js"></script>
+  </body>
+</html>

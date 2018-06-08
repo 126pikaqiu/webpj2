@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>个人注册</title>
+    <link rel="icon" href="templates/img/web_img/favicon.ico"/>
+    <link rel="stylesheet" href="templates/css/main.css">
+    <link rel="stylesheet" href="templates/css/register.css">
+    <script src="templates/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+</head>
+<body>
+<div id="dialog" title="提示">
+    <h2></h2>
+    <button type="button" name="button">确认</button>
+</div>
+<div id="header" class="">
+    <div>
+        <a href="index.php" class="logo">
+            <img src="templates/img/web_img/logo_cn.png" alt="logo">
+        </a>
+        <div class="logo_tit" style="display:inline">
+            欢迎注册
+        </div>
+        <div class="have-account">已有账号？ <a href="login.php" class="hv-red hv-under">请登录</a></div>
+    </div>
+</div>
+<div class="section">
+    <div class="section-main">
+        <div class="main">
+            <div class="form-img">
+                <a href="#">  <img src="templates/img/web_img/timg.jpg" alt="艺术生活"></a>
+            </div>
+            <div class="form">
+                <form action="register.php" class="rform" method="post">
+                    <input type="text" id="type" value="page" name="type">
+                    <div class="form-item">
+                        <label>用　户　名</label>
+                        <input type="text" class="rform-account" name="regName" class="field" placeholder='请输入用户名'
+                               maxlength="20"/>
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">支持中文、字母、数字、“-”“_”的组合，6-20个字符</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>设 置 密 码</label>
+                        <input type="password" name="pwd" class="rform-pwd" class="field" placeholder="请设置密码"
+                               maxlength="20"/>
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">建议使用字母、数字和符号两种及以上的组合，6-20个字符</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>确 认 密 码</label>
+                        <input type="password" name="pwdRepeat" class="rform-equalTopwd"
+                               placeholder="确认密码" maxlength="20"/>
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">请再次输入密码</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>手 机 号 码</label>
+                        <input type="tel" name="tel" class="rform-mobile"
+                               placeholder="请输入手机号码" maxlength="11"/>
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png">完成验证后，你可以用该手机找回密码</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>邮　　　箱</label>
+                        <input type="email" name="email" class="rform-email"
+                               placeholder="请输入邮箱" />
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png">完成验证后，你可以使用该邮箱登录</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>地　　　址</label>
+                        <input type="email" name="email" class="rform-address"
+                               placeholder="请输入地址" />
+                        <img src="templates/img/web_img/check.png" class="check" alt="">
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png">完成验证后，会被用作收货地址</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>邮箱验证码</label>
+                        <input type="text" class="rform-code" name="mobileCode" placeholder="验证码" maxlength="6"/>
+                        <a class="rcode" href="javascript:;" >获取验证码</a>
+                    </div>
+                    <div class="input-tip">
+                        <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">验证码</i>
+                        <span class="tip"></span>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-register">立即注册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="footer-main">
+        <footer>
+            <div class="foo-links">
+                <a rel="nofollow" target="_blank" href="artStore.html#aboutUs">
+                    关于我们
+                </a> |
+                <a rel="nofollow" target="_blank" href="artStore.html#contactUs">
+                    联系我们
+                </a> |
+                <a rel="nofollow" target="_blank" href="artStore.html#recruit">
+                    人才招聘
+                </a> |
+                <a rel="nofollow" target="_blank" href="artStore.html#business">
+                    商家入驻
+                </a> |
+                <a rel="nofollow" target="_blank" href="artStore.html#advertisement">
+                    广告服务
+                </a> |
+                <a target="_blank" target="_blank" href="artStore.html#links">
+                    友情链接
+                </a> |
+                <a target="_blank" target="_blank" href="artStore.html#union">
+                    销售联盟
+                </a>
+            </div>
+            <div class="copyright">
+                Copyright&nbsp;&copy;&nbsp;2018-2030&nbsp;&nbsp;艺术品之家Art Store.com&nbsp;版权所有
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="templates/js/global.js"></script>
+<script src="templates/js/rform.js"></script>
+</body>
+</html>

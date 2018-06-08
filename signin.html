@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>艺家-欢迎登录</title>
+    <link rel="icon" href="templates/img/web_img/favicon.ico"/>
+    <link rel="stylesheet" href="templates/css/main.css">
+      <link rel="stylesheet" href="templates/css/signin.css">
+    <script src="templates/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+  </head>
+  <body>
+    <div id="dialog" title="登录提示">
+      <h2></h2>
+      <button type="button" name="button">确认</button>
+    </div>
+    <div id="header">
+        <a href="../html/index.html" class="logo">
+          <img src="templates/img/web_img/logo_cn.png" alt="logo">
+        </a>
+        <div class="logo_tit" style="display:inline">
+            欢迎登录
+        </div>
+    </div>
+    <div class="section">
+        <div class="sec-main">
+          <div class="form">
+            <div class="form-header">密码登录</div>
+            <div class="form-con">
+                <form action="login.php" name="form" class="sform" method="POST">
+                    <input type="text" id="type" value="page" name="type">
+                    <div class="form-item">
+                        <label><img src="templates/img/web_img/user.png" class="iconfont" alt="用　户　名" title="用户名"></label>
+                        <input type="text" class="sform-account" name="regName"
+                               onblur="this.placeholder='请输入用户名'" onfocus="placeholder=''"  placeholder="请输入用户名"/>
+                    </div>
+                    <div class="input-tip">
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label><img src="templates/img/web_img/pwd.png" class="iconfont" alt="密　　　码" title="密码"></label>
+                        <input type="password" name="pwd" class="sform-pwd" onblur="this.placeholder='请输入用户名'"
+                               onfocus="placeholder=''"   placeholder="请输入密码"/>
+                    </div>
+                    <div class="input-tip">
+                        <span class="tip"></span>
+                    </div>
+                    <div class="form-item">
+                        <label>验 证 码</label>
+                        <input class="sform-code" maxlength="4" onblur="this.placeholder='请输入用户名'" onfocus="placeholder=''" type="text" name="mobileCode" placeholder="请输入验证码"/>
+                        <a class="scode" href="javascript:;"  title="点击更换验证码" onclick="changecode()"></a>
+                    </div>
+                    <div class="input-tip">
+                        <span class="tip"></span>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-signin">登  录</button>
+                    </div>
+                    </form>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="footer">
+      <div class="footer-main">
+      <footer>
+          <div class="foo-links">
+            <a rel="nofollow" target="_blank" href="artStore.html#aboutUs">
+                    关于我们
+                </a> |
+            <a rel="nofollow" target="_blank" href="artStore.html#contactUs">
+                    联系我们
+                </a> |
+            <a rel="nofollow" target="_blank" href="artStore.html#recruit">
+                    人才招聘
+                </a> |
+            <a rel="nofollow" target="_blank" href="artStore.html#business">
+                    商家入驻
+                </a> |
+            <a rel="nofollow" target="_blank" href="artStore.html#advertisement">
+                    广告服务
+                </a> |
+            <a target="_blank" target="_blank" href="artStore.html#links">
+                    友情链接
+                </a> |
+            <a target="_blank" target="_blank" href="artStore.html#union">
+                    销售联盟
+                </a>
+          </div>
+          <div class="copyright">
+            Copyright&nbsp;&copy;&nbsp;2018-2030&nbsp;&nbsp;艺术品之家Art Store.com&nbsp;版权所有
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script src="templates/js/global.js"></script>
+    <script src="templates/js/sform.js"></script>
+  </body>
+</html>
+
+</html>

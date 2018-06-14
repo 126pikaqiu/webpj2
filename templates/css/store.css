@@ -42,12 +42,23 @@
   display: inline;
 }
 aside button{
-  background-color: #8cdcfa;
+    margin-top: 80px;
+    position: relative;
+  background-color: #ff0036;
+    height:35px;
+    width:180px;
+    color: white;
   padding: 0.2em 2em;
   margin-right: 1em;
+    border: none;
 }
 aside button img{
-  width: 16px;
+  width: 20px;
+}
+#cartPng{
+    position: absolute;
+    top: 9px;
+    left:30px;
 }
 .img{
   float: left;
@@ -116,7 +127,7 @@ table th{
 #normal{
     overflow: hidden;
     width:340px;
-    height:500px;
+    height:340px;
     border:1px solid #000;
 }
 #normal img{
@@ -147,10 +158,13 @@ table th{
     position:absolute;
     top:0;left:0;
     width:680px;
-    height:1000px;
+    height:680px;
 }
 .log-img{
-    height: 80px;
-    width: 80px;
+     height: 80px;
+     width: 80px;
+ }
+.loading1{
+    display: none;
 }
 

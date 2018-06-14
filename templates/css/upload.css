@@ -1,29 +1,15 @@
-.main{
-    margin-left: 10%;
-    margin-right: 10%;
-}
-.footer{
-    margin:5% 10%;
-}
 
-form{
-    margin-top: 60px;
-    margin-left: 650px;
-}
-.artupload-img{
-    float: left;
-    margin-top: 190px;
-    margin-left: 200px;
-    position: relative;
+body a{
+    color:#999;
 }
 .surf-header{
     margin-top: -40px;
-    margin-right:40px;
+    margin-right:160px;
     float: right;
     width:300px;
     background-color: #ff0036;
 }
-.surf-header label{
+.surf-header a{
     height: 28px;
     color:#fff;
     line-height: 30px;
@@ -31,91 +17,133 @@ form{
 }
 .surf-header input{
     width:250px;
-    height:23px;
-    margin:0 1px 3px 3px;
+    height:30px;
+    margin:2px 1px 1px 3px;
 }
 .title-uk{
     font-size: 40px;
     margin-left: 7px;
+    font-family: "Times New Roman";
 }
 .log-tit{
     font-size: 25px;
     margin-left: 7px;
 }
-form label{
-    font-family: "楷体";
-    margin-right: 20px;
-    font-size: 20px;
+
+#head-nav {
+    border-bottom:1px solid #ddd;
 }
-form input{
-    border: none;
-    height: 30px;
-    width: 200px;
+#head-nav .w{
+    background-color: #e3e4e5;
+    height:30px;
+    line-height: 30px;
 }
-form p{
-    height:20px;
-    line-height: 20px;
-}
-#submit{
-    background-color: #58ac58;
-    color: #fff;
-    border: none;
-    font-weight: 600;
-    text-align: center;
-    height: 30px;
-    width: 60px;
-}
-#height,#width{
-    width: 90px;
-}
-#header{
-    font-size: 30px;
-    font-weight: 800;
-    margin-top: 100px;
-}
-textarea{
-    height: 100px;
-    width: 284px;
-    border:1px solid #e2e3e4;
-}
-#cancel{
-    border:1px solid black;
-    background-color: white;
-    font-weight: 600;
-    text-align: center;
-    height: 30px;
-    width: 60px;
-    margin-right: 170px;
-}
-div.item{
-    border:1px solid #e2e3e4;
-    width: 280px;
-    height: 30px;
-    text-align: center;
-    vertical-align: center;
-    padding: 10px 10px 10px 10px;
-}
-div.btn-area{
-    position: relative;
-}
-#chooseImage{
-    opacity: 0;
-    position: absolute;
-    top:555px;
-    left: 310px;
-}
-#addImage{
-    width: 80px;
-    border: 1px solid black;
-    background-color: #fff;
-}
-form p{
+.hv-red:hover{
     color:red;
 }
-#cropedBigImg{
-    width: 300px;
-    height: 200px;
+.hv-under:hover{
+    text-decoration: underline;
 }
+.hv-yel:hover{
+    color:yellow;
+}
+#head-nav li{
+    list-style-type: none;
+    float:left;
+}
+#head-nav li.spacer{
+    overflow:hidden;
+    margin:11px 5px 0;
+    width:2px;
+    height:10px;
+    background-color:#ccc;
+}
+.dt{
+    margin-right: 7px;
+    margin-left: 7px;
+}
+
+.dt-link{
+    background-color: #e3e4e5;
+    font-weight:400;
+}
+.dt-link img{
+    position: absolute;
+    width:16px;
+    height:17px;
+    background-color: transparent;
+    top:5px;
+}
+.dt-link img:hover{
+    border:1px solid #fff;
+}
+ul.fr{
+    margin-top:0;
+    float:right;
+    margin-right:10%;
+}
+#dialog{
+    display: none;
+}
+.log-img{
+    height: 120px;
+    width: 120px;
+    margin-top: -30px;
+    margin-left: 140px;
+}
+.cart{
+    margin-left: 19px;
+}
+
+#dialog button{
+    width: 100px;
+    height: 30px;
+    margin: 5em;
+    background-color: #ff0036;
+    border: none;
+    color: white;
+}
+
+#secOne{
+    margin-top:80px;
+}
+#crumbs{
+    margin-left: 160px;
+}
+.crumbs{
+    display:inline;
+    padding-left: 10px;
+}
+.crumbs li{
+    display: inline;
+}
+
+#chooseImage{
+    margin-left: -85px;
+    opacity: 0;
+}
+.set2{
+    margin-bottom: 50px;
+}
+.account-img{
+    height:20px;
+    width: 20px;
+    background-color: transparent;
+    position: absolute;
+    top:5px;
+}
+.signout{
+     margin-left: 15px;
+ }
+
+#cropedBigImg{
+    max-height: 350px;
+}
+
+textarea{
+    height: 100px;
+}
+
 
 
 

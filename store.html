@@ -91,7 +91,7 @@
           <span class="tip"></span>
         </div>
         <div>
-          <button type="button" class="btn-register">立即注册</button>
+          <button type="button" class="btn-register"><span>立即注册</span><img src="templates/img/web_img/loading.gif" class="loading"></button>
         </div>
       </form>
       <footer>
@@ -130,7 +130,7 @@
             <span class="tip"></span>
           </div>
           <div>
-            <button type="button" class="btn-signin">登  录</button>
+            <button type="button" class="btn-signin"><span>登  录</span><img src="templates/img/web_img/loading.gif" class="loading"></button>
           </div>
         </form>
         <a href="login.php" class="hv-under" style="color:#333">网页版登录</a>
@@ -158,11 +158,6 @@
         <div class="dt-link"><img src="templates/img/web_img/cart.png" alt="cart"><a class="hv-red cart" href="javascript:;">购物车<strong id="gooNumber">0</strong>件</a>
           <i class=""></i></div>
       </li>
-      <!--<li class="spacer"></li>-->
-      <!--<li class="dt">-->
-        <!--<div class="dt-link hv-red"><a class="hv-red" href="item.html">商品详情</a></div>-->
-        <!--<div class=""></div>-->
-      <!--</li>-->
     </ul>
   </div>
 </nav>
@@ -181,8 +176,6 @@
   <div id="crumbs">
     <strong>您的位置</strong>
     <ol class="crumbs">
-      <li><a href="">首页</a></li>>
-      <li class="current">我的购物车</li>
     </ol>
   </div>
   <aside class="aside-left">
@@ -199,7 +192,8 @@
       <section id="secOne">
         <p class="description" id="description">坠落的烟火是惠斯勒比较得意的艺术作品,含有大量的亚洲元素,图中出现了日本和服以及中国瓷器</p>
         <p><strong>price: <span class="money" id="price">$12,000</span></strong></p>
-        <button class="hv-red">★加入到收藏夹</button> <button id="addToCart" class="hv-red"><img src="templates/img/web_img/shopCart.png" alt="">添加到购物车</button><br>
+        <button class="hv-yel">★加入到收藏夹</button> <button id="addToCart" class="hv-yel"><img src="templates/img/web_img/shopcart.png" id="cartPng" alt=""><span>
+        添加到购物车</span><img src="templates/img/web_img/loading.gif" class="loading1"></button><br>
         <table>
           <thead>
           <th colspan="2">商品详情</th>
@@ -217,17 +211,13 @@
             <td>尺寸（高 ✖ 宽）</td>
             <td><span id="height">100</span>cm ✖ <span id="width">83</span>cm</td>
           </tr>
-          <!--<tr>-->
-          <!--<td>画面内容</td>-->
-          <!--<td id="content">家庭生活</td>-->
-          <!--</tr>-->
-          <!--<tr>-->
-          <!--<td>藏馆</td>-->
-          <!--<td id="address">大英博物馆</td>-->
-          <!--</tr>-->
           <tr>
-            <td>数量</td>
-            <td id="number">13</td>
+            <td>热度</td>
+            <td id="view"></td>
+          </tr>
+          <tr>
+            <td>状态</td>
+            <td id="status"></td>
           </tr>
           </tbody>
         </table>
@@ -297,36 +287,6 @@
     </footer>
   </div>
 </div>
-<!--<div class="smc">-->
-<!--<div>-->
-<!--<div class="noEmpty">-->
-<!--<header>最新加入的商品</header>-->
-<!--<ul class="mcart-sigle">-->
-<!--<li>-->
-<!--<div class="img"><img src="templates/img/art_img/images/works/square-medium/019130.jpg" alt=""></div>-->
-<!--<div class="infor">-->
-<!--<h5 class="name">Irises</h5>-->
-<!--<h5 class="author">By 梵高</h5>-->
-<!--<h6 class="money">$21,000</h6>-->
-<!--</div>-->
-<!--</li>-->
-<!--<li>-->
-<!--<div class="img"><img src="templates/img/art_img/images/works/square-medium/50.jpg" alt=""></div>-->
-<!--<div class="infor">-->
-<!--<h5 class="name">The Falling Fireworks</h5>-->
-<!--<h5 class="author">By 惠斯勒</h5>-->
-<!--<h6 class="money">$12,000</h6>-->
-<!--</div>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--<div class="empty">-->
-<!--<div><img src="templates/img/web_img/rcart.png" alt="cart"></div>-->
-<!--<br>-->
-<!--<div><h5>购物车空空如也</h5></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
 <script src="templates/js/global.js"></script>
 <script src="templates/js/main.js"></script>
 <script src="templates/js/store.js"></script>

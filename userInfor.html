@@ -13,46 +13,15 @@
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </head>
 <body>
-
-<div class="smc">
-  <div>
-    <div class="noEmpty">
-      <header>最新加入的商品</header>
-      <ul class="mcart-sigle">
-        <li>
-          <div class="img"><img src="templates/img/art_img/6.jpg" alt=""></div>
-          <div class="infor">
-            <h5 class="name">Irises</h5>
-            <h5 class="author">By 梵高</h5>
-            <h6 class="money">$21,000</h6>
-          </div>
-        </li>
-        <li>
-          <div class="img"><img src="templates/img/art_img/7.jpg" alt=""></div>
-          <div class="infor">
-            <h5 class="name">The Falling Fireworks</h5>
-            <h5 class="author">By 惠斯勒</h5>
-            <h6 class="money">$12,000</h6>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="empty">
-      <div><img src="templates/img/web_img/rcart.png" alt="cart"></div>
-      <br>
-      <div><h5>购物车空空如也</h5></div>
-    </div>
-  </div>
-</div>
 <div id="dialog1" title="金额充值">
   <input type="number" name="" value="">
   <button type="button" name="button">确认</button>
 </div>
-<div id="dialog2" title="充值提示">
+<div id="dialog" title="提示">
   <h2></h2>
   <button type="button" name="button">确认</button>
 </div>
-<div id="dialog" title="修改个人信息">
+<div id="dialog-modal" title="修改个人信息">
   <form action="register.html" class="rform" method="post">
     <div class="form-item">
       <label>用　户　名</label>
@@ -62,26 +31,6 @@
     </div>
     <div class="input-tip">
       <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">支持中文、字母、数字、“-”“_”的组合，6-20个字符</i>
-      <span class="tip"></span>
-    </div>
-    <div class="form-item">
-      <label>设 置 密 码</label>
-      <input type="password" name="pwd" class="rform-pwd" class="field" placeholder="请设置密码"
-             maxlength="20"/>
-      <img src="templates/img/web_img/check.png" class="check" alt="">
-    </div>
-    <div class="input-tip">
-      <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">建议使用字母、数字和符号两种及以上的组合，6-20个字符</i>
-      <span class="tip"></span>
-    </div>
-    <div class="form-item">
-      <label>确 认 密 码</label>
-      <input type="password" name="pwdRepeat" class="rform-equalTopwd"
-             placeholder="确认密码" maxlength="20"/>
-      <img src="templates/img/web_img/check.png" class="check" alt="">
-    </div>
-    <div class="input-tip">
-      <i class="i-status"><img src="templates/img/web_img/infor.png" alt="">请再次输入密码</i>
       <span class="tip"></span>
     </div>
     <div class="form-item">
@@ -124,7 +73,7 @@
       <span class="tip"></span>
     </div>
     <div>
-      <button type="button" class="btn-register">立即注册</button>
+      <button type="button" class="btn-register"><span>确认修改</span><img src="templates/img/web_img/loading.gif" class="loading"></button>
     </div>
   </form>
 </div>
@@ -145,11 +94,6 @@
         <div class="dt-link"><img src="templates/img/web_img/cart.png" alt="cart"><a class="hv-red  cart" href="javascript:;">购物车<strong id="gooNumber">0</strong>件</a>
           <i class=""></i></div>
       </li>
-      <li class="spacer"></li>
-      <li class="dt">
-        <div class="dt-link hv-red"><a class="hv-red" href="store.php">商品详情</a></i></div>
-        <div class=""></div>
-      </li>
     </ul>
   </div>
 </nav>
@@ -169,8 +113,6 @@
     <div id="crumbs">
       <strong>您的位置</strong>
       <ol class="crumbs">
-        <li><a href="">首页</a></li>>
-        <li class="current">我的购物车</li>
       </ol>
     </div>
   </section>
@@ -185,57 +127,25 @@
   </aside>
   <aside id="aside-right">
     <div id="upload">
-      <p>我上传的艺术品:</p>
+      <p>我上传的艺术品:</p><span id="upload-none">暂无</span>
       <table>
-        <tr><td>艺术品名称</td><td>上传日期</td><td>操作</td></tr>
-        <tr>
-          <td>《鸢尾花》</td>
-          <td>梵高</td>
-          <td><a href="javascript:;">删除</a><br>
-            <a href="revise.php?id=6">修改信息</a></td>
-        </tr>
-        <tr>
-          <td>《下落的烟火》</td>
-          <td>惠勒斯</td>
-          <td><a href="javascript:;">删除</a><br>
-            <a href="revise.php?id=6">修改信息</a>
-          </td>
-        </tr>
+        <thead><th>艺术品名称</th><th>上传日期</th><th>操作</th></thead>
+        <tbody></tbody>
       </table>
       <a href="upload.php">继续上传</a>
     </div>
     <div id="order">
-      <p>我购买的艺术品</p>
+      <p>我购买的艺术品</p><span id="order-none">暂无</span>
       <table>
-        <tr>
-          <td>订单编号；20180528060</td>
-          <td>商品名称：艺术画《鸢尾花》</td>
-          <td>订单时间：2018.5.26</td>
-          <td>订单金额:$21,000</td>
-        </tr>
-        <tr>
-          <td>订单编号；20180526065</td>
-          <td>商品名称：艺术画《下落的烟火》</td>
-          <td>订单时间：2018.5.28</td>
-          <td>订单金额:$12,000</td>
-        </tr>
+        <thead><th>订单编号</th><th>商品名称</th><th>订单时间</th><th>订单金额</th></thead>
+        <tbody></tbody>
       </table>
     </div>
     <div id="sale">
-      <p>我卖出的艺术品:</p>
+      <p>我卖出的艺术品:</p><span id="sale-none">暂无</span>
       <table>
-        <tr>
-          <td>订单编号；20180528060</td>
-          <td>商品名称：艺术画《鸢尾花》</td>
-          <td>订单时间：2018.5.26</td>
-          <td>订单金额:$21,000</td>
-        </tr>
-        <tr>
-          <td>订单编号；20180526065</td>
-          <td>商品名称：艺术画《下落的烟火》</td>
-          <td>订单时间：2018.5.28</td>
-          <td>订单金额:$12,000</td>
-        </tr>
+        <thead><th>订单编号</th><th>商品名称</th><th>订单时间</th><th>订单金额</th></thead>
+        <tbody></tbody>
       </table>
     </div>
   </aside>
@@ -244,25 +154,25 @@
   <div class="footer-main">
     <footer>
       <div class="foo-links">
-        <a rel="nofollow" target="_blank" href="artStore.php#aboutUs">
+        <a rel="nofollow" target="_blank" href="artStore.html#aboutUs">
           关于我们
         </a> |
-        <a rel="nofollow" target="_blank" href="artStore.php#contactUs">
+        <a rel="nofollow" target="_blank" href="artStore.html#contactUs">
           联系我们
         </a> |
-        <a rel="nofollow" target="_blank" href="artStore.php#recruit">
+        <a rel="nofollow" target="_blank" href="artStore.html#recruit">
           人才招聘
         </a> |
-        <a rel="nofollow" target="_blank" href="artStore.php#business">
+        <a rel="nofollow" target="_blank" href="artStore.html#business">
           商家入驻
         </a> |
-        <a rel="nofollow" target="_blank" href="artStore.php#advertisement">
+        <a rel="nofollow" target="_blank" href="artStore.html#advertisement">
           广告服务
         </a> |
-        <a target="_blank" target="_blank" href="artStore.php#links">
+        <a target="_blank" target="_blank" href="artStore.html#links">
           友情链接
         </a> |
-        <a target="_blank" target="_blank" href="artStore.php#union">
+        <a target="_blank" target="_blank" href="artStore.html#union">
           销售联盟
         </a>
       </div>

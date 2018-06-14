@@ -1,0 +1,11 @@
+table td{
+    width:120px;
+    text-align: center;
+}
+
+.aside-left{
+    margin-left: 100px;
+}
+.aside-right{
+    margin-right: 100px;
+}

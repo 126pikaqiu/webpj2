@@ -16,7 +16,7 @@ label a{
 .surf-header input{
   width:250px;
   height:23px;
-  margin:0px 1px 3px 3px;
+  margin:0 1px 3px 3px;
 }
 .title-uk{
   font-size: 40px;
@@ -66,7 +66,7 @@ label a{
   margin-left: 1em;
 }
 #aside-left p{
-  margin-top: 1em;
+  margin-top: 0.5em;
   white-space: nowrap;
 }
 #aside-right{
@@ -78,7 +78,7 @@ label a{
   margin-bottom: 10px;
 }
 #upload{
-  height:200px;
+  height:240px;
   background-color: #ffffe0;
 }
 #order{
@@ -89,17 +89,8 @@ label a{
   height:200px;
   background-color: #cf9;
 }
-table{
-  border:1px solid black;
-  margin-top: 2em;
-}
-table td{
-  border:1px solid black;
-  padding:10px 30px  10px 0;
-
-}
 .footer{
-  margin:5% 10%;
+  margin:10% 10%;
 }
 #dialog1{
   display: none;
@@ -111,3 +102,27 @@ table td{
   width: 100px;
   margin: 5em;
 }
+
+table {
+  display: none;
+  border-collapse:collapse;
+  border:1px solid black;
+  border-right: none;
+}
+th{
+  text-align: center;
+  border-right: 1px solid black;
+}
+table td {
+  border:1px solid black;
+  width: 210px;
+  text-align: center;
+  border-bottom: none;
+  border-left:none;
+}
+#upload td{
+  width: 260px;
+}
+
+
+

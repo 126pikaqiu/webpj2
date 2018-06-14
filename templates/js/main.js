@@ -1,4 +1,6 @@
 
+let footArry = {"首页":"index.html","我的购物车":"cart.html","搜索":"search.html",
+    "商品详情":"store.html","个人信息":"userInfor.html","关于艺家":"artStore.html"};
 document.ready = function(){
     if(!localStorage.getItem("goodsNumber")){
         localStorage.setItem("goodsNumber","0");
@@ -10,8 +12,10 @@ setInterval(function(){
       $(".signin").css({
         display:"inline"
       });
-      if(!$(".account")[0].innerHTML)
-        $(".account")[0].innerHTML = getCookie("username");
+      if(!$(".account")[0].innerHTML || getCookie("changeMyInfor")){
+          $(".account")[0].innerHTML = getCookie("username");
+          setCookie("changeMyInfor",false);
+      }
       $($(".dt")[0]).css({
         display:"none"
       });
@@ -40,21 +44,6 @@ setInterval(function(){
       $(".empty").css("display","none");
       $(".noEmpty").css("display","block");
     }
-
-    // if(localStorage.items)
-    //   var chaItems = localStorage.items.split(";");
-
-    // $(".mcart-sigle").empty();
-    // //加入购物车预览
-    // for(var i = 1; i < chaItems.length; i++){
-    //   var items = chaItems[i].split("?");
-    //   $(".mcart-sigle").append("<li>\<div class='img'><img src='" + items[0] + "' alt=''>" +
-    //     "</div><div class='infor'>" +
-    //       "<h5 class='name'>" + items[1] + "</h5><h5 class='author'>" + items[2] + "</h5>\
-    //       <h6 class='money'>" + "$" + items[3] + "</h6></div>\
-    //     </li>");
-    // }
-
 },100);
 
 //注册登出事件
@@ -108,23 +97,6 @@ $(".register").click(function(){
   $("#dialog-register").css("display","block");
   modal_dialog("注册");
 });
-
-// //鼠标滑过购物车
-// $(".cart").mouseover(function(){
-//   var mleft = $(this).offset().left;
-//   var mtop = $(this).offset().top;
-//   var height = $(this).height();
-//   $(".smc").css({
-//     top: mtop + height,
-//     left:mleft - $(this).width()
-//   })
-// });先禁用
-
-
-// //鼠标移开
-// $(".smc").mouseleave(function(){
-//   $(".smc").css("top", "-50%");
-// });
 
 $("#searchTrigger").keydown(function (e) {
     if (e.keyCode === 13) {

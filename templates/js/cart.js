@@ -1,4 +1,4 @@
-
+let ordArtworkIDs = [];
 setInterval(function(){
   if(getCookie("login") !== "true")
     window.location.href = "index.html";
@@ -35,7 +35,24 @@ setInterval(function(){
 },100);
 
 $(document).ready(function () {
-    console.log(localStorage.getItem("userInfor"));
+
+    //设置足迹
+    let foot = JSON.parse(getCookie("foot"));
+    let temp = {};
+    for(let i in foot){
+        if(foot[i] === "我的购物车"){
+            break;
+        }
+        temp[i] = foot[i];
+        let html = "<li><a class='hv-under' href='"+ footArry[foot[i]]  + "'> "+ foot[i] + "</a></li>>";
+        $("ol.crumbs").html($("ol.crumbs").html() + html)
+    }
+    let html = "<li>我的购物车</li>";
+    $("ol.crumbs").html($("ol.crumbs").html() + html);
+    temp[Object.getOwnPropertyNames(temp).length] = "我的购物车";
+    footArry["我的购物车"] = window.location.search;
+    setCookie("foot",JSON.stringify(temp));
+
     //设置配送地址
     if(localStorage.getItem("userInfor")){
         let infor = localStorage.getItem("userInfor").split("|");
@@ -43,31 +60,10 @@ $(document).ready(function () {
     }
 
     loadingHtml();
-    let date = new Date();
-    if(date.getDay() === 0){ //每周末更新本地购物车记录
-        $.when(getMyCartInfo()).done(function(){
-            updateMyCartFromDB();
-        });
-    }else if(date.getDay() === 4){
-        // updateMyDB()
-    }
     updateMyCartFromDB();
     setEvent();
     setSumMoney();
 });
-// function updateMyDB(){
-//     if(!localStorage.getItem("mycart")){
-//         return;
-//     }
-//     $.ajax({
-//         url:"handleCart.php",
-//         data:{"value":localStorage.getItem("mycart")},//携带的参数
-//         type: "POST",
-//         success(msg){
-//             console.log("update my DB successfully");
-//         }
-//     });
-// }
 
 function loadingHtml(){
     //重新加载购物车页面，内容清空
@@ -155,8 +151,9 @@ function addItem(id){
         setEvent();
     });
 }
-function setSumMoney(){
-
+function setSumMoney(type = 1){
+    if(type === 1)
+        ordArtworkIDs = [];
     let allMoney = 0;//金币总量
     //计算和设置总金额
     let items = $(".cart-item-list");
@@ -165,6 +162,8 @@ function setSumMoney(){
     let numberSeleted = 0;
     for(let i = 0; i < items.length; i++){
         if($(inputs[i]).is(":checked")){
+            if(type === 1)
+                ordArtworkIDs[ordArtworkIDs.length] = $($(".p-name>a")[i]).attr("href").split("id=")[1];
             allMoney += parseInt($(".p-price strong")[i].innerHTML.replace("$", ""));
             numberSeleted ++;
         }
@@ -186,6 +185,7 @@ function setEvent() {
         $($(".cart-item-list")[index]).remove();
         localStorage.setItem("goodsNumber",parseInt(localStorage.getItem("goodsNumber")) - 1);
         setSumMoney();
+        updateMyDB();
     });
 
     $(".p-checkbox input").change(function(){
@@ -193,6 +193,7 @@ function setEvent() {
             $($(".item-list")[$(".p-checkbox input").index(this)]).css("backgroundColor","#fff4e8");
         }else{
             $($(".item-list")[$(".p-checkbox input").index(this)]).css("backgroundColor","#fff");
+            $(".allchecked").attr("checked",false);
         }
         setSumMoney();
     });
@@ -203,7 +204,6 @@ function updateMyCartFromDB(){
     if(!mycart){
         return;
     }
-    console.log("update");
     let index = 0;
     for(let id in mycart){
         $.when(getInfoByKey("artworkID", id)).done(function(msg){
@@ -212,19 +212,6 @@ function updateMyCartFromDB(){
             $($(".p-name>a")[index]).attr("href","store.html?id=" +  msg["artworkID"]).html(msg["title"]);
             $($(".p-price strong")[index++]).html("$" + msg["price"]);
         });
-}
-function getMyCartInfo(){
-    let defer = $.Deferred();
-    $.ajax({
-        url:"handleCart.php",
-        type: "GET",
-        success(msg){
-            msg = JSON.parse(msg);
-            localStorage.setItem("mycart", JSON.stringify(msg));
-            defer.resolve(msg);
-        },
-    });
-    return defer.promise();
 }
 }
 $(".allchecked").change(function(){
@@ -247,57 +234,62 @@ $(".btn-area a").click(function(){
     if(parseInt($("span.sumPrice").html().replace("$","")) === 0){
         remind("亲，您还没选中商品!");
         return;
-    };
+    }
     let infor = localStorage.getItem("userInfor").split("|");
     if(!parseInt($("span.sumPrice").html().replace("$","")) || !parseInt(infor[4])){
         remind("下单失败");
         return;
     }
     let money = parseInt(infor[4]);
-    console.log($("span.sumPrice").html());
     if(money > parseInt($("span.sumPrice").html().replace("$",""))){
-        remind("下单成功。余额剩余" + money);
-        setCookie("changeMyInfor",true);
+        remind("下单成功。余额剩余" + (money - parseInt($(".sumPrice").html().replace("$",""))));
         let userInfor = "true|" + infor[1] + "|" +  infor[2] + "|"  + infor[3] + "|"  + (money - parseInt($(".sumPrice").html().replace("$","")));
         localStorage.setItem("userInfor",userInfor);
-
+        setCookie("changeMyInfor",true);
         //更新账户信息
         $.ajax({
             url:"userInfor.php",
             data:{"regName": getCookie("username"),"balance":money - parseInt($(".sumPrice").html().replace("$",""))},//携带的参数
+            type: "POST"
+        });
+        emptyMyCart();//清空选中项
+        //更新订单数据库
+        $.ajax({
+            url:"order.php",
+            data:{"artworkID": ordArtworkIDs},//携带的参数
             type: "POST",
             success(msg){
                 console.log(msg);
-                let infor = msg.split("|");
-                console.log(infor[0]);
-                if(infor[0] === "true"){
-                    localStorage.setItem("userInfor",msg);
-                    console.log(1);
-                }else{
-                    localStorage.setItem("userInfor","");
-                }
             }
         });
+        setCookie("getOrders",true);
     }else{
         remind("余额不足，请先充值。余额为" + money)
     }
 });
-// $(".buy-bt button").click(function(){
-//   $("#dialog h2").html("支付成功");
-//   $("#dialog").dialog({
-//     height: 300,
-//     width: 300,
-//     show: {
-//     effect: "blind",
-//     duration: 1000
-//   },
-//   hide:{
-//     effect: "explode",
-//     duration: 1000
-//   }
-//   });
-// });
-//
-// $("#dialog button").click(function(){
-//   $("#dialog").dialog("close");
-// });
+
+//清空选中项
+function emptyMyCart() {
+    let items = $(".cart-item-list");
+    let mycart = JSON.parse(localStorage.getItem("mycart"));
+    let addworkID = localStorage.getItem("addworkID");
+    for(let index = items.length - 1; index >= 0; index--){
+        if($(".p-checkbox input")[index].checked){
+            let id = $($(".p-name>a")[index]).attr("href").split("id=")[1];
+            localStorage.setItem("addworkID",addworkID.replace(id + "&",""));
+            delete mycart[id];
+            $($(".cart-item-list")[index]).remove();
+            localStorage.setItem("goodsNumber",parseInt(localStorage.getItem("goodsNumber")) - 1);
+        }
+    }
+    setSumMoney(2);
+    localStorage.setItem("mycart",JSON.stringify(mycart));
+    updateMyDB();
+}
+
+//全部删除
+$(".remove-batch").click(function () {
+    emptyMyCart();
+});
+
+

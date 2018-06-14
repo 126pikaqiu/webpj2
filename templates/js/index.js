@@ -1,87 +1,13 @@
 $(document).ready(function(){
-
-    localStorage.removeItem("mycart");
-    localStorage.removeItem("addworkID");
-    localStorage.removeItem("goodsNumber");//程序测试，清空购物车所有信息
-    // if(!localStorage.getItem("mycart"))
-    //     localStorage.setItem("mycart","");
-    // if(!localStorage.getItem("addworkID"))
-    //     localStorage.setItem("addworkID","");
-    // if(!localStorage.getItem("goodsNumber"))
-    //     localStorage.setItem("goodsNumber","");
+    let foot = {0:"首页"};
+    setCookie("foot",JSON.stringify(foot));
 
     //获得索引和id的对应表
     let indexToID = JSON.parse(localStorage.getItem("indexTOID"));
 
-    //幻灯片效果的制作
-     let slideBox = $(".slideBox");
-     let ul = slideBox.find("ul");
-     let oneWidth = slideBox.find("ul li").eq(0).width();
-     let number = slideBox.find(".spanBox span");            //注意分号 和逗号的用法
-     let timer = null;
-     let sw = 0;
-     //每个span绑定click事件，完成切换颜色和动画，以及读取参数值
-     number.on("click",function (){
-       $(this).addClass("active").siblings("span").removeClass("active");
-       sw = $(this).index();
-       ul.animate({
-              "right": oneWidth * sw,    //ul标签的动画为向左移动；
-        });
-        if(sw === number.length - 1)
-          $($(".spanBox span")[0]).addClass("active").siblings("span").removeClass("active");
-     });
-
-     //左右按钮的控制效果
-     $(".prev").stop(true,true).click(function (){
-         sw++;
-         if(sw === number.length){
-           sw = 1;
-           ul.css("right","0");
-         }
-         number.eq(sw).trigger("click");
-         });
-    $(".next").stop(true,true).click(function (){
-        sw--;
-        if(sw === -1){
-          sw = 5;
-          ul.css("right","7200px");
-        }
-        number.eq(sw).trigger("click");
-        });
-
-    //定时器的使用，自动开始
-    timer = setInterval(function (){
-        sw++;
-        if(sw === number.length){
-          sw = 0;
-          ul.css("right","0");
-        }
-        number.eq(sw).trigger("click");
-        },2000);
-
-    //hover事件完成悬停和左右图标的动画效果
-    slideBox.hover(function(){
-        $(".next,.prev").animate({
-            "opacity":1,
-            },200);
-        clearInterval(timer);
-        },function(){
-            $(".next,.prev").animate({
-                "opacity":0.5,
-            },500);
-            timer = setInterval(function (){
-              sw++;
-            if(sw === number.length){
-              sw = 0;
-              ul.css("right","0");
-            }
-            number.eq(sw).trigger("click");
-            },2000);
-        });
-
-    //生成html框架，12为随取的索引初值
-    for(let i = 12; i < 21;i++){
-        let item =  '<div class="art_por arp' +  i % 3 + '">\
+    //生成html框架
+    for(let i = 0; i < 6;i++){
+        let item =  '<div class="art_por arp' +  i % 2 + '">\
                 <div class="art-img"><a><img class="art_img"></a></div><div> <div>\
                 <div class="por-head">\
             </div>\
@@ -90,31 +16,155 @@ $(document).ready(function(){
             </div>\
             </div>\
             <div>\
-            <input type="button" class="hv-red" name="" value="learn more"></div></div></div>';
-        $($(".por-art")[i % 3]).html($($(".por-art")[i % 3]).html() + item);
+            <input type="button" class="hv-yel des-lea" name="" value="learn more"></div></div></div>';
+        $($(".por-art")[i % 2]).html($($(".por-art")[i % 2]).html() + item);
     }
+    createSlideBox();
+    createItems();
+    //所有查看按钮的点击
+    $("input:button").click(function(){
+        window.location.href =  $($(".art-img a")[$("input:button").index($(this))]).attr("href");
+    });
+});
 
-    //加载内容
-    for(let i = 12; i < 21;i++){
 
-        //判断是直接用索引还是使用id来查询
-        let key = "";
-        let value = '';
-        if( indexToID && indexToID[i]){
-            key = "artworkID";
-            value = indexToID[i];
-        }else{
-            key = "index";
-            value = i + "";
+//获得最热的几件商品
+function getHotWorks() {
+    //查询商品详情信息
+    let defer = $.Deferred();
+    $.ajax({
+        url:"workInfor.php",
+        data:{"key":"getHotWorks"},//携带的参数
+        type: "GET",
+        success(msg){
+            defer.resolve(JSON.parse(msg));
+            localStorage.setItem("hotWorks",msg);
+            saveMsg();
+        }
+    });
+    return defer.promise();
+}
+
+//本地储存
+function saveMsg() {
+    let msg = JSON.parse(localStorage.getItem("hotWorks"));
+    for (let key in msg){
+        localStorage.setItem("work" + msg[key]["artworkID"],JSON.stringify(msg[key]));
+    }
+}
+
+//创建轮播
+function createSlideBox() {
+    $.when(getHotWorks()).done(function (msg) {
+        for(let index = 0; index <= 6; index++){
+            $($(".slideBox li img")[index]).attr("src",
+                "templates/img/art_img/" + msg[index%6]["imageFileName"]);
+            $($(".slideBox li a")[index]).attr("href","store.html?id=" + msg[index%6]["artworkID"]);
+            $($(".slideBox li h2")[index]).html(msg[index%6]["title"]);
+            $($(".slideBox li p")[index]).html(msg[index%6]["description"].split(".",300)[0] + '.');
         }
 
-        //查询艺术品信息
-        $.when(getInfoByKey(key, value)).done(function(msg){
-            $($(".art-img a")[i - 12]).attr("href","store.html?id=" +  msg["artworkID"]);
-            $($(".art_img")[i - 12]).attr("src","templates/img/art_img/" + msg["imageFileName"]);
-            $($(".por-head")[i - 12]).html(msg["title"]);
-            $($(".por-body")[i - 12]).html(msg["description"].substr(0,90) + "." + "...");
+        //幻灯片效果的制作
+        let slideBox = $(".slideBox");
+        let ul = slideBox.find("ul");
+        let oneWidth = slideBox.find("ul li").eq(0).width();
+        let number = slideBox.find(".spanBox span");            //注意分号 和逗号的用法
+        let timer = null;
+        let sw = 0;
+        //每个span绑定click事件，完成切换颜色和动画，以及读取参数值
+        number.on("click",function (){
+            $(this).addClass("active").siblings("span").removeClass("active");
+            sw = $(this).index();
+            ul.animate({
+                "right": oneWidth * sw,    //ul标签的动画为向左移动；
+            });
+            if(sw === number.length - 1)
+                $($(".spanBox span")[0]).addClass("active").siblings("span").removeClass("active");
+        });
 
+        //左右按钮的控制效果
+        $(".prev").stop(true,true).click(function (){
+            sw++;
+            if(sw === number.length){
+                sw = 1;
+                ul.css("right","0");
+            }
+            number.eq(sw).trigger("click");
+        });
+        $(".next").stop(true,true).click(function (){
+            sw--;
+            if(sw === -1){
+                sw = 5;
+                ul.css("right","7200px");
+            }
+            number.eq(sw).trigger("click");
+        });
+
+        //定时器的使用，自动开始
+        timer = setInterval(function (){
+            sw++;
+            if(sw === number.length){
+                sw = 0;
+                ul.css("right","0");
+            }
+            number.eq(sw).trigger("click");
+        },2000);
+
+        //hover事件完成悬停和左右图标的动画效果
+        slideBox.hover(function(){
+            $(".next,.prev").animate({
+                "opacity":1,
+            },200);
+            clearInterval(timer);
+        },function(){
+            $(".next,.prev").animate({
+                "opacity":0.5,
+            },500);
+            timer = setInterval(function (){
+                sw++;
+                if(sw === number.length){
+                    sw = 0;
+                    ul.css("right","0");
+                }
+                number.eq(sw).trigger("click");
+            },2000);
+        });
+    });
+}
+
+//获得最新上传的6件商品
+function getNewWorks() {
+    //查询商品详情信息
+    let defer = $.Deferred();
+    $.ajax({
+        url:"workInfor.php",
+        data:{"key":"getNewWorks"},//携带的参数
+        type: "GET",
+        success(msg){
+            defer.resolve(JSON.parse(msg));
+            localStorage.setItem("newWorks",msg);
+            saveMsgA();
+        }
+    });
+    return defer.promise();
+}
+function saveMsgA() {
+    let msg = JSON.parse(localStorage.getItem("newWorks"));
+    for (let key in msg){
+        localStorage.setItem("work" + msg[key]["artworkID"],JSON.stringify(msg[key]));
+    }
+}
+
+function createItems(){
+        //查询艺术品信息
+        $.when(getNewWorks()).done(function(msg){
+            //加载内容
+            for(let i = 0; i < 6;i++){
+            $($(".art-img a")[i]).attr("href","store.html?id=" +  msg[i]["artworkID"]);
+            $($(".art_img")[i]).attr("src","templates/img/art_img/" + msg[i]["imageFileName"]);
+            $($(".por-head")[i]).html(msg[i]["title"]);
+            $($(".por-body")[i]).html(msg[i]["description"].substr(0,90) + "." + "...");
+            }
             //注册图片放大的事件
             $(".art_img").mouseover(function(){
                 $(this).css({
@@ -130,10 +180,4 @@ $(document).ready(function(){
             });
 
         });
-    }
-
-    //所有查看按钮的点击
-    $("input:button").click(function(){
-        window.location.href =  $($(".art-img a")[$("input:button").index($(this))]).attr("href");
-    });
-});
+}

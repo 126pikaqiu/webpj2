@@ -1,3 +1,4 @@
+//设置cookie
 function setCookie(c_name,value,expiredays)
 {
     let exdate=new Date();
@@ -6,8 +7,9 @@ function setCookie(c_name,value,expiredays)
         ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
 }
 
+
 //通过关键词访问艺术品
-function getInfoByKey(key, value, index = 0){//key为获取信息的关键词，value为值，index是为搜索专门设置的索引
+function getInfoByKey(key, value){//key为获取信息的关键词，value为值，index是为搜索专门设置的索引
 
     if(key === "artworkID" && localStorage.getItem("work" + value)){
         return JSON.parse(localStorage.getItem("work" + value));
@@ -15,36 +17,25 @@ function getInfoByKey(key, value, index = 0){//key为获取信息的关键词，
 
     //查询商品详情信息
     let defer = $.Deferred();
-    if(key === "search"){
-        $.ajax({
-            url:"search.php",
-            data:{"key":value, "index": index},//携带的参数
-            type: "GET",
-            success(msg){
-                defer.resolve(JSON.parse(msg));
+    $.ajax({
+        url:"workInfor.php",
+        data:{"key":key, "value":value},//携带的参数
+        type: "GET",
+        success(msg){
+            msg = JSON.parse(msg);
+            if(!msg){
+                window.location = "index.html";
             }
+            if(!localStorage.getItem("work" + msg["artworkID"])){
+                localStorage.setItem("work" + msg["artworkID"], JSON.stringify(msg));
+            }
+            defer.resolve(msg);
+        },
         });
-    }else{
-        $.ajax({
-            url:"workInfor.php",
-            data:{"key":key, "value":value},//携带的参数
-            type: "GET",
-            success(msg){
-                console.log(key);
-                console.log(msg);
-                msg = JSON.parse(msg);
-                if(!msg){
-                    window.location = "index.html";
-                }
-                if(!localStorage.getItem("work" + msg["artworkID"])){
-                    localStorage.setItem("work" + msg["artworkID"], JSON.stringify(msg));
-                }
-                defer.resolve(msg);
-            },
-        });
-    }
     return defer.promise();
 }
+
+//获得url参数
 function getUrlParam(name,s = ""){
 
     //构造一个含有目标参数的正则表达式对象
@@ -60,6 +51,7 @@ function getUrlParam(name,s = ""){
     return null;
 }
 
+//获得cookie
 function getCookie(c_name)
 {
     if (document.cookie.length>0)
@@ -75,12 +67,13 @@ function getCookie(c_name)
     }
     return ""
 }
+
 //对话框提示信息
 function remind(information){
     $("#dialog h2").html(information);
     $("#dialog").dialog({
-        height:300,
-        width:300,
+        height:340,
+        width:330,
         show: {
             effect: "blind",
             duration: 500
@@ -93,9 +86,9 @@ function remind(information){
 }
 
 //模态框弹窗
-function modal_dialog(title1){
+function modal_dialog(title1,height = 600){
     $("#dialog-modal").dialog({
-        height:600,
+        height:height,
         width:500,
         title:title1,
         show: {
@@ -105,6 +98,39 @@ function modal_dialog(title1){
         hide:{
             effect: "explode",
             duration: 1000
+        }
+    });
+}
+
+//获得购物车信息
+function getMyCartInfor(){
+    $.ajax({
+        url:"handleCart.php",
+        type: "GET",
+        success(msg){
+            msg = JSON.parse(msg);
+            let temp = {};
+            for(let i in msg){
+                temp[i] = msg[i];
+            }
+            localStorage.setItem("goodsNumber",Object.getOwnPropertyNames(temp).length);
+            localStorage.setItem("mycart", JSON.stringify(temp));
+        }
+    });
+}
+
+//更新购物车数据库
+function updateMyDB(){
+    if(!localStorage.getItem("mycart")){
+        return;
+    }
+    console.log(localStorage.getItem("mycart"));
+    $.ajax({
+        url:"handleCart.php",
+        data:{"value":localStorage.getItem("mycart")},//携带的参数
+        type: "POST",
+        success(msg){
+            console.log("update my DB successfully");
         }
     });
 }

@@ -50,6 +50,7 @@ body{
 .art_por{
   width:200px;
   float:left;
+    min-height: 250px;
 }
 .por-art{
   width:1200px;
@@ -58,9 +59,6 @@ body{
   margin-left: 140px;
 }
 .arp1{
-  margin-left: 140px;
-}
-.arp2{
   margin-left: 140px;
 }
 .por-head{
@@ -77,11 +75,15 @@ body{
   border-radius:50px;
 }
 .art_por input{
-  background-color: #09a3dc;
+  background-color: #ff0036;
+    border: none;
   color:#fff;
   width:80px;
   height:30px;
   margin-left:50px;
+}
+.art_por .des-lea{
+    margin-bottom: 0;
 }
 .por-art{
   margin-top: 50px;
@@ -110,10 +112,28 @@ ul {
     width:1200px;
     height:480px;
     float:left;
+    position: relative;
 }
 ul li img{
   height: 480px;
   width: 1200px;
+}
+ul li h2{
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    top:20px;
+    left:35%;
+    font-family: "Garamond";
+}
+ul li p{
+    width: 400px;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    top:80px;
+    left:34%;
+    font-family: "times new roman";
 }
 .spanBox {
     position:absolute;
@@ -170,3 +190,4 @@ ul li img{
 #extra1{
   visibility: hidden;
 }
+

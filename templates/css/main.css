@@ -54,6 +54,9 @@ a{
 .hv-under:hover{
   text-decoration: underline;
 }
+.hv-yel:hover{
+  color:yellow;
+}
 #head-nav li{
   list-style-type: none;
   float:left;
@@ -76,7 +79,6 @@ a{
 }
 .dt-link img{
   position: absolute;
-  width:27px;
   height:17px;
   background-color: transparent;
   top:5px;
@@ -101,7 +103,11 @@ ul.fr{
 }
 #dialog button{
   width: 100px;
+  height: 30px;
   margin: 5em;
+  background-color: #ff0036;
+  border: none;
+  color: white;
 }
 .dt-link img{
   width: 16px;
@@ -134,7 +140,7 @@ ul.fr{
     border:0 none;
     width: 140px;
     height: 19px;
-    padding: 16px 0px 11px 20px;
+    padding: 16px 0 11px 20px;
     font-size:14px;
   }
 .rform .input-tip{
@@ -230,7 +236,7 @@ ul.fr{
   border:0 none;
   width: 180px;
   height: 19px;
-  padding: 16px 0px 11px 10px;
+  padding: 16px 0 11px 10px;
   font-size:14px;
 }
 .sform input.input-code{
@@ -261,55 +267,6 @@ ul.fr{
 }
 .sform .tip{
   margin-left:-13%;
-}
-.smc{
-  position: absolute;
-  top:-50%;
-}
-.smc>div{
-  width: 200px;
-  height:250px;
-  border:1px solid black;
-  overflow: scroll;
-  background-color: #fff;
-}
-.smc li{
-  border:1px solid #e2e3e4;
-  padding: 10px;
-}
-.smc img{
-  float: left;
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
-.smc header{
-  font-weight: 600;
-  margin: 10px;
-}
-.smc h5,h6{
-  padding: 0;
-  margin:0;
-  white-space: nowrap;
-}
-.smc .empty {
-    display: none;
-}
-.smc .empty img{
-  width: 100px;
-  height: 100px;
-}
-.smc .name{
-  white-space: normal;
-  font-size: 10px;
-}
-.smc .author{
-  font-weight: lighter;
-  font-size: 8px;
-}
-.smc .money{
-  font-style: italic;
-  color:red;
 }
 .rform .input-tip i{
   display: none;
@@ -351,4 +308,20 @@ a.searchTrigger{
 }
 .dis-none{
   display: none;
+}
+.loading{
+  display: none;
+}
+.title-uk{
+  font-family: "Times New Roman";
+}
+#secOne{
+  margin-top:5%;
+}
+.crumbs{
+  display:inline;
+  padding-left: 1em;
+}
+.crumbs li{
+  display: inline;
 }

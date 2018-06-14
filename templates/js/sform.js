@@ -66,6 +66,8 @@ $(".btn-signin").click(function(){
         form_code.focus();
         return false;//不提交表单
     }
+    $(".loading").css("display","inline");
+    $(".btn-signin span").html("");
     $.ajax({
         url:"login.php",//后台查询验证的方法
         data:{"regName": account.value, "pwd": pwd.value},//携带的参数
@@ -79,24 +81,29 @@ $(".btn-signin").click(function(){
                 setCookie("login", "true");
                 if($("#dialog-modal"))
                     $("#dialog-modal").dialog("close");
+                $(".loading").css("display","none");
+                $(".btn-signin span").html("登  录");
+                localStorage.setItem("addworkID","");
+                localStorage.setItem("goodsNumber",0);
+                getMyCartInfor();
+
                 //获取个人基础信息
                 $.ajax({
                     url:"userInfor.php",
                     data:{"regName": getCookie("username")},//携带的参数
                     type: "GET",
                     success(msg){
-                        console.log(msg);
                         let infor = msg.split("|");
-                        console.log(infor[0]);
                         if(infor[0] === "true"){
                             localStorage.setItem("userInfor",msg);
-                            console.log(1);
                         }else{
                             localStorage.setItem("userInfor","");
                         }
                     }
                 });
             }else{
+                $(".loading").css("display","none");
+                $(".btn-signin span").html("登  录");
                 tips[0].innerHTML = results[1];
                 tips[1].innerHTML = results[2];
             }

@@ -322,11 +322,11 @@ $(".rform-email").blur(function(){
 
 //获取验证码判断
 $(".rcode").click(function(){
-    if($(".rform .tip")[3].innerHTML || $(".rform-mobile").val().length != 11){
-        $(".rform-mobile").focus();
-        $(".rform .tip")[3].innerHTML="请输入手机号码";
-        $($(".rform .i-status")[3]).css("display","none");
-        check(3,false);
+    if(!right[4]){
+        $(".rform-email").focus();
+        $(".rform .tip")[4].innerHTML="请输入邮箱";
+        $($(".rform .i-status")[4]).css("display","none");
+        check(4,false);
         return;
     }
     $(".rform .i-status")[6].innerHTML = "验证码已发送，60s内有效";
@@ -357,13 +357,20 @@ $(".btn-register").click(function(){
         }
     }
 
+    $(".loading").css("display","inline");
+    $(".btn-register span").html("");
     try{
         //ajax请求
         $.ajax({
             url:"register.php",//后台查询验证的方法
             data:{"regName": $(".rform input")[0].value,"pwd": $(".rform input")[1].value,"tel": $(".rform input")[3].value,
                 "email": $(".rform input")[4].value,"address":$(".rform input")[5].value},//携带的参数
-            type: "POST"
+            type: "POST",
+            success(msg){
+                console.log(msg);
+                msg = [$(".rform input")[3].value,$(".rform input")[4].value,$(".rform input")[5].value,0];
+                localStorage.setItem("userInfor","true|" + msg.join("|"));S
+            }
         });
     }catch (e) {
         console.log(e.message);
@@ -374,15 +381,18 @@ $(".btn-register").click(function(){
     setCookie("login","true");
     remind("注册成功");
 
-    //初始化购物车信息
-    $.ajax({
-        url:"handleCart.php",
-        data:{"order": "create","regName": getCookie("username")},//携带的参数
-        type: "GET",
-        success(msg){
-            console.log(msg);
-        }
-    });
+    $(".loading").css("display","none");
+    $(".btn-register span").html("立即注册");
+    localStorage.setItem("mycart","");
+    // //初始化购物车信息
+    // $.ajax({
+    //     url:"handleCart.php",
+    //     data:{"order": "create","regName": getCookie("username")},//携带的参数
+    //     type: "GET",
+    //     success(msg){
+    //         console.log(msg);
+    //     }
+    // });
 
     $("#dialog-modal").dialog("close");
     return false;

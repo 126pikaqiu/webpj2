@@ -17,7 +17,7 @@
 .surf-header input{
   width:250px;
   height:23px;
-  margin:0px 1px 3px 3px;
+  margin:0 1px 3px 3px;
 }
 .title-uk{
   font-size: 40px;
@@ -33,6 +33,7 @@
 .footer{
   clear: both;
   margin:0 10%;
+    margin-top:900px;
 }
 .crumbs{
   display:inline;
@@ -42,7 +43,7 @@
   display: inline;
 }
 aside button{
-    margin-top: 80px;
+    margin-top: 50px;
     position: relative;
   background-color: #ff0036;
     height:35px;
@@ -68,6 +69,7 @@ aside button img{
   display: inline;
   float: left;
   max-width: 500px;
+    margin-top: 0;
 }
 .aside-left{
   margin-top: 4em;
@@ -83,7 +85,9 @@ aside button img{
   font-style: italic;
   margin:1em 0;
 }
-
+p#description{
+    text-indent: 2em;
+}
 p.description{
   font-style: normal;
   font-family: "楷体";
@@ -99,7 +103,13 @@ table{
 table td{
   font-family: "楷体";
   border-top:1px solid;
-  padding:1em 6em 1em 1em;
+}
+#secOne td{
+    border:1px solid black;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
 }
 table th{
   padding: 0.6em 0;
@@ -151,7 +161,7 @@ table th{
   height:260px;
   overflow:hidden;
   position:absolute;
-  top:170px;
+  top:140px;
   left:500px;
 }
 #big>img{

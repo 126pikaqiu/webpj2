@@ -104,10 +104,12 @@ function modal_dialog(title1,height = 600){
 
 //获得购物车信息
 function getMyCartInfor(){
+    let defer = $.Deferred();
     $.ajax({
         url:"handleCart.php",
         type: "GET",
         success(msg){
+            console.log(msg);
             msg = JSON.parse(msg);
             let temp = {};
             for(let i in msg){
@@ -115,8 +117,10 @@ function getMyCartInfor(){
             }
             localStorage.setItem("goodsNumber",Object.getOwnPropertyNames(temp).length);
             localStorage.setItem("mycart", JSON.stringify(temp));
+            defer.resolve(msg);
         }
     });
+    return defer.promise()
 }
 
 //更新购物车数据库
@@ -124,13 +128,23 @@ function updateMyDB(){
     if(!localStorage.getItem("mycart")){
         return;
     }
-    console.log(localStorage.getItem("mycart"));
     $.ajax({
         url:"handleCart.php",
         data:{"value":localStorage.getItem("mycart")},//携带的参数
-        type: "POST",
-        success(msg){
-            console.log("update my DB successfully");
-        }
+        type: "POST"
     });
+}
+
+//购买权限判断
+function getRoot(artworkIDs){
+    let defer = $.Deferred();
+    $.ajax({
+        url:"order.php",
+        data:{"artworkID":artworkIDs},//携带的参数
+        type: "GET",
+        success(msg){
+            defer.resolve(msg);
+        },
+    });
+    return defer.promise();
 }

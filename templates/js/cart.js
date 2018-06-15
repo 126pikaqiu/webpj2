@@ -73,6 +73,7 @@ function loadingHtml(){
     if(!localStorage.getItem("mycart")){
         return;
     }
+
     let mycart;
     //购物车对象中储存了商品ID
     try{
@@ -231,38 +232,57 @@ $(".allchecked").change(function(){
     setSumMoney();
 });
 $(".btn-area a").click(function(){
+
+    //没有选中商品
     if(parseInt($("span.sumPrice").html().replace("$","")) === 0){
         remind("亲，您还没选中商品!");
         return;
     }
+
+    //信息异常
     let infor = localStorage.getItem("userInfor").split("|");
-    if(!parseInt($("span.sumPrice").html().replace("$","")) || !parseInt(infor[4])){
+    if(!parseInt($("span.sumPrice").html().replace("$",""))){
         remind("下单失败");
         return;
     }
+
+    //余额判断
     let money = parseInt(infor[4]);
     if(money > parseInt($("span.sumPrice").html().replace("$",""))){
-        remind("下单成功。余额剩余" + (money - parseInt($(".sumPrice").html().replace("$",""))));
-        let userInfor = "true|" + infor[1] + "|" +  infor[2] + "|"  + infor[3] + "|"  + (money - parseInt($(".sumPrice").html().replace("$","")));
-        localStorage.setItem("userInfor",userInfor);
-        setCookie("changeMyInfor",true);
-        //更新账户信息
-        $.ajax({
-            url:"userInfor.php",
-            data:{"regName": getCookie("username"),"balance":money - parseInt($(".sumPrice").html().replace("$",""))},//携带的参数
-            type: "POST"
-        });
-        emptyMyCart();//清空选中项
-        //更新订单数据库
-        $.ajax({
-            url:"order.php",
-            data:{"artworkID": ordArtworkIDs},//携带的参数
-            type: "POST",
-            success(msg){
-                console.log(msg);
+        //检查是否被购买
+        $.when(getRoot(ordArtworkIDs)).done(function (msg) {
+            msg = eval(msg);
+            if(msg.length){
+                let remind1 = '商品';
+                for(let i = 0; i < msg.length; i++){
+                    remind1 += JSON.parse(localStorage.getItem("work" + msg[i]))["title"] + ",   ";
+                }
+                if(remind1 !==  '商品'){
+                    remind(remind1 + "已经被购买或撤回，现在无货。购买无效");
+                }
+            }else{
+                remind("下单成功。余额剩余" + (money - parseInt($(".sumPrice").html().replace("$",""))));
+                let userInfor = "true|" + infor[1] + "|" +  infor[2] + "|"  + infor[3] + "|"  + (money - parseInt($(".sumPrice").html().replace("$","")));
+                localStorage.setItem("userInfor",userInfor);
+                setCookie("changeMyInfor",true);
+                //更新账户信息
+                $.ajax({
+                    url:"userInfor.php",
+                    data:{"regName": getCookie("username"),"balance":money - parseInt($(".sumPrice").html().replace("$",""))},//携带的参数
+                    type: "POST"
+                });
+                emptyMyCart();//清空选中项
+
+                //更新订单数据库
+                $.ajax({
+                    url:"order.php",
+                    data:{"artworkID": ordArtworkIDs},//携带的参数
+                    type: "POST"
+                });
+                setCookie("getOrders",true);
             }
+
         });
-        setCookie("getOrders",true);
     }else{
         remind("余额不足，请先充值。余额为" + money)
     }
@@ -291,5 +311,12 @@ function emptyMyCart() {
 $(".remove-batch").click(function () {
     emptyMyCart();
 });
+
+function checkCart() {
+    let brought = [];
+
+
+    return brought;
+}
 
 

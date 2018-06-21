@@ -25,7 +25,7 @@
             <form action="register.html" class="rform" method="post">
                 <div class="form-item">
                     <label>用　户　名</label>
-                    <input type="text" class="rform-account" name="regName" class="field" placeholder='请输入用户名'
+                    <input type="text" class="rform-account" name="regName" placeholder='请输入用户名'
                            maxlength="20"/>
                     <img src="templates/img/web_img/check.png" class="check" alt="">
                 </div>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-item">
                     <label>设 置 密 码</label>
-                    <input type="password" name="pwd" class="rform-pwd" class="field" placeholder="请设置密码"
+                    <input type="password" name="pwd" class="rform-pwd" placeholder="请设置密码"
                            maxlength="20"/>
                     <img src="templates/img/web_img/check.png" class="check" alt="">
                 </div>
@@ -93,7 +93,7 @@
                     <span class="tip"></span>
                 </div>
                 <div>
-                    <button type="button" class="btn-register">立即注册</button>
+                    <button type="button" class="btn-register"><span>立即注册</span><img src="templates/img/web_img/loading.gif" class="loading"></button>
                 </div>
             </form>
             <footer>
@@ -106,10 +106,10 @@
         <div class="form">
             <div class="form-header">密码登录</div>
             <div class="form-con">
-                <form action="login.html" name="form" class="sform" method="POST">
+                <form action="login.php" name="form" class="sform" method="POST">
                     <div class="form-item">
                         <label><img src="templates/img/web_img/user.png" class="iconfont" alt="用　户　名" title="用户名"></label>
-                        <input type="text" class="sform-account" name="regName" class="field"
+                        <input type="text" class="sform-account" name="regName"
                                onblur="this.placeholder='请输入用户名'" onfocus="placeholder=''"  placeholder="请输入用户名"/>
                     </div>
                     <div class="input-tip">
@@ -118,7 +118,7 @@
                     <div class="form-item">
                         <label><img src="templates/img/web_img/pwd.png" class="iconfont" alt="密　　　码" title="密码"></label>
                         <input type="password" name="pwd" class="sform-pwd" onblur="this.placeholder='请输入用户名'"
-                               onfocus="placeholder=''"  class="field" placeholder="请输入密码"/>
+                               onfocus="placeholder=''"  placeholder="请输入密码"/>
                     </div>
                     <div class="input-tip">
                         <span class="tip"></span>
@@ -132,10 +132,10 @@
                         <span class="tip"></span>
                     </div>
                     <div>
-                        <button type="button" class="btn-signin">登  录</button>
+                        <button type="button" class="btn-signin"><span>登  录</span><img src="templates/img/web_img/loading.gif" class="loading"></button>
                     </div>
                 </form>
-                <a href="login.html" class="hv-under" style="color:#333">网页版登录</a>
+                <a href="signin.html" class="hv-under" style="color:#333">网页版登录</a>
             </div>
         </div>
     </div>
@@ -156,10 +156,6 @@
                 <div class="dt-link"><a href="search.html">搜索</a></div>
                 <div class=""></div>
             </li>
-            <!--<li class="spacer"></li>-->
-            <!--<li class="dt">-->
-                <!--<div class="dt-link hv-red"><a class="hv-red" href="store.html">商品详情</a></div>-->
-            <!--</li>-->
             <li class="spacer"></li>
             <li class="dt">
                 <div class="dt-link"><img src="templates/img/web_img/cart.png" alt="cart"><a class="hv-red cart" href="javascript:;">购物车<strong id="gooNumber">0</strong>件</a>
@@ -184,13 +180,13 @@
     </div>
     <div class="slideBox">
         <ul>
-            <li><img src="templates/img/art_img/68.jpg" alt=""/></li>
-            <li><img src="templates/img/art_img/446.jpg" alt=""/></li>
-            <li><img src="templates/img/art_img/159.jpg" alt=""/></li>
-            <li><img src="templates/img/art_img/381.jpg" alt=""/></li>
-            <li><img src="templates/img/art_img/371.jpg" alt=""/></li>
-            <li><img src="templates/img/art_img/400.jpg" alt=""/></li>
-            <li><img src="templates/img/art_img/68.jpg" alt=""/></li>
+            <li><h2 class="title"></h2><p></p><a href=""><img src="templates/img/art_img/68.jpg" alt=""/></a></li>
+            <li><h2 class="title"></h2><p></p><a href=""><img src="templates/img/art_img/446.jpg" alt=""/></a></li>
+            <li><h2 class="title"></h2><p></p><a href=""><img src="templates/img/art_img/159.jpg" alt=""/></a></li>
+            <li><h2 class="title"></h2><p></p><a href=""><img src="templates/img/art_img/381.jpg" alt=""/></a></li>
+            <li><h2 class="title"></h2><p></p><a href=""><img src="templates/img/art_img/371.jpg" alt=""/></a></li>
+            <li><h2 class="title"></h2><p></p><a href=""><img src="templates/img/art_img/400.jpg" alt=""/></a></li>
+            <li><h2 class="title"></h2><p></p><a href=""><img src="templates/img/art_img/68.jpg" alt=""/></a></li>
         </ul>
         <div class="spanBox">
             <span class="active"></span>
@@ -203,8 +199,6 @@
         </div>
         <div class="prev"><a href="javascript:;">〈</a></div>
         <div class="next"><a href="javascript:;">〉</a></div>
-    </div>
-    <div class="por-art">
     </div>
     <div class="por-art">
     </div>
@@ -240,36 +234,6 @@
                     Copyright&nbsp;&copy;&nbsp;2018-2030&nbsp;&nbsp;艺术品之家Art Store.com&nbsp;版权所有
                 </div>
             </footer>
-        </div>
-    </div>
-    <div class="smc">
-        <div>
-            <div class="noEmpty">
-                <header>最新加入的商品</header>
-                <ul class="mcart-sigle">
-                    <li>
-                        <div class="img"><img src="templates/img/art_img/29.jpg" alt=""></div>
-                        <div class="infor">
-                            <h5 class="name">Irises</h5>
-                            <h5 class="author">By 梵高</h5>
-                            <h6 class="money">$21,000</h6>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img"><img src="templates/img/art_img/6.jpg" alt=""></div>
-                        <div class="infor">
-                            <h5 class="name">The Falling Fireworks</h5>
-                            <h5 class="author">By 惠斯勒</h5>
-                            <h6 class="money">$12,000</h6>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="empty">
-                <div><img src="templates/img/web_img/rcart.png" alt="cart"></div>
-                <br>
-                <div><h5>购物车空空如也</h5></div>
-            </div>
         </div>
     </div>
 </div>

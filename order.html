@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <title>艺家 订单详情</title>
+    <link rel="icon" href="templates/img/web_img/favicon.ico"/>
+    <link rel="stylesheet" href="templates/css/main.css">
+    <link rel="stylesheet" href="templates/css/store.css">
+    <link rel="stylesheet" href="templates/css/order.css">
+    <script src="templates/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+</head>
+<body>
+<div id="dialog" title="登录提示">
+    <h2></h2>
+    <button type="button" name="button">确认</button>
+</div>
+<nav id="head-nav">
+    <div class="w">
+        <ul class="fr">
+            <li class="dt">
+                <a href="javascript:;" class="sign dt-link hv-red">您好，请登录</a>&nbsp;&nbsp;
+                <a href="javascript:;" class="register style-red">免费注册</a>
+            </li>
+            <li class="dt signin">
+                <a class="link-login dt-link">Hi <a href="userInfor.html" target="_blank" title="点击查看各人信息"><span class="account hv-red"></span><img src="templates/img/web_img/account.png" class="account-img"></a></a>&nbsp;&nbsp;
+                <a class="signout hv-red" href="javascript:;">退出登录</a>
+            </li>
+            <li class="spacer"></li>
+            <li class="dt">
+                <div class="dt-link hv-red"><a class="hv-red" href="index.php">首页</a></div>
+            </li>
+            <li class="spacer"></li>
+            <li class="dt">
+                <div class="dt-link"><img src="templates/img/web_img/cart.png" alt="cart"><a class="hv-red cart" href="javascript:;">购物车<strong id="gooNumber">0</strong>件</a>
+                    <i class=""></i></div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="main">
+    <div class="txt-head">
+        <div class="logo-con">
+            <img src="templates/img/web_img/logo.jpg" class="log-img" alt="艺术品之家logo" title="艺术品之家">
+            <span class="title-uk">Art Store</span>
+            <span class="log-tit">艺家</span>
+        </div>
+        <div class="surf-header">
+            <input type="text" name="" id="searchTrigger" value="">
+            <label><a href="javascript:;" class="searchTrigger">搜 索</a></label>
+        </div>
+    </div>
+    <div id="crumbs">
+        <strong>您的位置</strong>
+        <ol class="crumbs">
+        </ol>
+    </div>
+    <aside class="aside-left">
+
+        <table>
+            <thead>
+            <th colspan="2">订单详情</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>订单编号</td>
+                <td id="orderID"></td>
+            </tr>
+            <tr>
+                <td>商品名称</td>
+                <td id="title"></td>
+            </tr>
+            <tr>
+                <td>订单时间</td>
+                <td id="timeCreated"></td>
+            </tr>
+            <tr>
+                <td>订单金额</td>
+                <td id="price"></td>
+            </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+            <th colspan="2">客户信息</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>用户名</td>
+                <td id="order-account"></td>
+            </tr>
+            <tr>
+                <td>邮箱</td>
+                <td id="order-email"></td>
+            </tr>
+            <tr>
+                <td>地址</td>
+                <td id="order-address"></td>
+            </tr>
+            <tr>
+                <td>电话号码</td>
+                <td id="order-tel"></td>
+            </tr>
+            </tbody>
+        </table>
+    </aside>
+    <aside class="aside-right">
+        <table>
+            <thead>
+            <th>流行艺术家</th>
+            </thead>
+            <tbody>
+            <tr><td><a href="javascript:;" class="hv-red">pablo Picasso</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">Claude Monet</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">Paul Gauguin</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">
+                Vincent Van Gogh</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">Georges Seurat</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">Paul Cezanne</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">
+                Edvard Munch</a></td></tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+            <th>流行流派</th>
+            </thead>
+            <tbody>
+            <tr><td><a href="javascript:;" class="hv-red">Post-Impressionism</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">Fauvism</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">Impressionism</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">Futurism</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">Realism</a></td></tr>
+            <tr><td><a href="javascript:;" class="hv-red">Surrealism</a></td></tr>
+            </tbody>
+        </table>
+    </aside>
+</div>
+<div class="footer">
+    <div class="footer-main">
+        <footer>
+            <div class="foo-links">
+                <a rel="nofollow" target="_blank" href="artStore.html#aboutUs">
+                    关于我们
+                </a> |
+                <a rel="nofollow" target="_blank" href="artStore.html#contactUs">
+                    联系我们
+                </a> |
+                <a rel="nofollow" target="_blank" href="artStore.html#recruit">
+                    人才招聘
+                </a> |
+                <a rel="nofollow" target="_blank" href="artStore.html#business">
+                    商家入驻
+                </a> |
+                <a rel="nofollow" target="_blank" href="artStore.html#advertisement">
+                    广告服务
+                </a> |
+                <a target="_blank" target="_blank" href="artStore.html#links">
+                    友情链接
+                </a> |
+                <a target="_blank" target="_blank" href="artStore.html#union">
+                    销售联盟
+                </a>
+            </div>
+            <div class="copyright">
+                Copyright&nbsp;&copy;&nbsp;2018-2030&nbsp;&nbsp;艺术品之家Art Store.com&nbsp;版权所有
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="templates/js/global.js"></script>
+<script src="templates/js/main.js"></script>
+<script src="templates/js/order.js"></script>
+</body>
+</html>

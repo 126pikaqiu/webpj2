@@ -21,7 +21,7 @@
                     $p1 = $db->query("SELECT  `ownerID` FROM artworks WHERE artworkID=". $id);
                     $ownerID = $p1->fetch()["ownerID"];
                     $p = $db->exec('INSERT INTO orders (`userID`,`orderID`, `ownerID`, `artworkID`)
-                                      VALUES('.$_SESSION["myID"].','.(integer)$id1.','.$ownerID.','.$id.")");
+                                      VALUES('.$_SESSION["myID"].','.(integer)$id1.','.$ownerID.','.$id.')');
                 }
                 echo $p;
             }else{
@@ -49,15 +49,20 @@
                 }
             }else{
                 $getIDs = $_GET["artworkID"];
+                $timeReleased = $_GET["timeReleased"];
                 //判断多个订单
                 $ids = [];
                 foreach($getIDs as $id){
                     $row = $db->query("SELECT  `userID` FROM orders WHERE artworkID=". $id);
-                    $row1 = $db->query("SELECT `artworkID` FROM artworks WHERE artworkID=" . $_GET["artworkID"]);
+                    $row1 = $db->query("SELECT `artworkID`,`timeReleased` FROM artworks WHERE artworkID=" .$id);
                     $p1 = $row1->fetchAll();
                     $p = $row->fetchAll();
                     if(count($p)>0 || !count($p1)){
-                        $ids[] = $id;
+                        if($p1[0]['timeReleased'] !== $timeReleased[count($ids) - 1]){
+                            $ids[] = "c".$id; //信息已经修改
+                        }else{
+                            $ids[] = $id;
+                        }
                     }
                 }
                 echo json_encode($ids);

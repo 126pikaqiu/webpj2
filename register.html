@@ -26,9 +26,16 @@
         <div class="logo_tit" style="display:inline">
             欢迎注册
         </div>
-        <div class="have-account">已有账号？ <a href="login.php" class="hv-red hv-under">请登录</a></div>
+        <div class="have-account">已有账号？ <a href="signin.html" class="hv-red hv-under">请登录</a></div>
     </div>
 </div>
+<section id="secOne">
+    <div id="crumbs">
+        <strong>您的位置</strong>
+        <ol class="crumbs">
+        </ol>
+    </div>
+</section>
 <div class="section">
     <div class="section-main">
         <div class="main">
@@ -108,7 +115,7 @@
                         <span class="tip"></span>
                     </div>
                     <div>
-                        <button type="button" class="btn-register">立即注册</button>
+                        <button type="button" class="btn-register"><span>立即注册</span><img src="templates/img/web_img/loading.gif" class="loading"></button>
                     </div>
                 </form>
             </div>
@@ -149,5 +156,27 @@
 </div>
 <script src="templates/js/global.js"></script>
 <script src="templates/js/rform.js"></script>
+<script type="text/javascript">
+    let temp = {};
+    if(getCookie("foot")){
+        //设置足迹
+        let foot = JSON.parse(getCookie("foot"));
+        for(let i in foot){
+            if(foot[i] === "注册"){
+                break;
+            }
+            temp[i] = foot[i];
+            let html = "<li><a class='hv-under' href='"+ footArry[foot[i]]  + "'> "+ foot[i] + "</a></li>>";
+            $("ol.crumbs").html($("ol.crumbs").html() + html)
+        }
+        temp[Object.getOwnPropertyNames(temp).length] = "注册";
+    }else {
+        temp["1"] = "注册";
+    }
+
+    let html = "<li>注册</li>";
+    $("ol.crumbs").html($("ol.crumbs").html() + html);
+    setCookie("foot",JSON.stringify(temp));
+</script>
 </body>
 </html>

@@ -30,17 +30,17 @@ document.ready = function () {
     let foot = JSON.parse(getCookie("foot"));
     let temp = {};
     for(let i in foot){
-        if(foot[i] === "上传艺术品"){
+        if(foot[i] === "发布艺术品"){
             break;
         }
         temp[i] = foot[i];
         let html = "<li><a class='hv-under' href='"+ footArry[foot[i]]  + "'> "+ foot[i] + "</a></li>>";
         $("ol.crumbs").html($("ol.crumbs").html() + html)
     }
-    let html = "<li>上传艺术品</li>";
+    let html = "<li>发布艺术品</li>";
     $("ol.crumbs").html($("ol.crumbs").html() + html);
-    temp[Object.getOwnPropertyNames(temp).length] = "上传艺术品";
-    footArry["上传艺术品"] = window.location.search;
+    temp[Object.getOwnPropertyNames(temp).length] = "发布艺术品";
+    footArry["发布艺术品"] = window.location.search;
     setCookie("foot",JSON.stringify(temp));
 };
 
@@ -62,7 +62,7 @@ $("#cancel").click(function () {
     return false;
 });
 $("#submit").click(function(){
-    if(!($("#chooseImage").val() || getUrlParam("id"))){
+    if(!$("#chooseImage").val()){
         showerror("请选择图片");
         return false;
     }else if(!$("#title").val()){

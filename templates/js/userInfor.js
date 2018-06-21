@@ -397,8 +397,9 @@ function setEvent(){
                 setCookie("del-legal",true);
             }
         });
-        if(getCookie("del-legal") + "" === "true")
+        if(getCookie("del-legal") + "" === "true"){
             remind("您将删除自己上传的作品！");
+        }
     });
 
     $(".revise-work").click(function(){
@@ -416,8 +417,12 @@ function setEvent(){
 
     $("#dialog button").click(function(){
         if(getCookie("del-legal") + ""  === "true"){
-            $($("#upload tr")[parseInt(getCookie("index"))]).remove();
             deleteUploadWork($($(".uplo-title")[getCookie("index")]).attr("href").split("id=")[1]);
+            $($("#upload tr")[parseInt(getCookie("index")) + 1]).remove();
+            if($("#upload tr").length === 1){
+                $("#upload table").css("display","none");
+                $("#upload-none").css("display","inline");
+            }
         }else{
             $("#dialog").dialog("close");
         }

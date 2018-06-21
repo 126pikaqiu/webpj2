@@ -34,7 +34,7 @@ document.ready = function() {
     $.when(getInfoByKey("artworkID",id)).done(function(msg){
         $('#captionImg').hide();
         $("#title").html(msg["title"]);
-        $("#artist").html("By  " + msg["artist"]);
+        $("#artist").html("By  " + msg["artist"]).attr('href',"search.html?artist=" + msg["artist"]);
         $("#description").html(msg["description"] + ".");
         $("#height").html(msg["height"]);
         $("#width").html(msg["width"]);
@@ -57,10 +57,13 @@ document.ready = function() {
 
 
 
-$("aside td a").click(function(){
+$("#tb-artist td a").click(function(){
   window.location.href = "search.html?" + encodeURI("artist=" + this.innerHTML);
 });
 
+$("#tb-genre td a").click(function(){
+    window.location.href = "search.html?" + encodeURI("genre=" + this.innerHTML);
+});
 $("#addToCart").click(function(){
     if($(".loading1").css("display") === "inline"){
         $(".loading1").css("display","none");
@@ -124,6 +127,7 @@ function getRoot(artworkID){
     });
     return defer.promise();
 }
+
 $('#normal').mouseover(function(){
         var th = this;
         //鼠标移入"显示"方块
@@ -207,9 +211,6 @@ function updateView() {
     $.ajax({
         url:"workInfor.php",
         type: "POST",
-        data:{"artworkID":getUrlParam("id") || "6"},
-        success(msg){
-            console.log(msg);
-        }
+        data:{"artworkID":getUrlParam("id") || "6"}
     });
 }

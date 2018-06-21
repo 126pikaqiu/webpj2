@@ -68,6 +68,7 @@ $(".btn-signin").click(function(){
     }
     $(".loading").css("display","inline");
     $(".btn-signin span").html("");
+
     $.ajax({
         url:"login.php",//后台查询验证的方法
         data:{"regName": account.value, "pwd": pwd.value},//携带的参数
@@ -76,30 +77,39 @@ $(".btn-signin").click(function(){
             //根据后台返回前台的msg给提示信息加HTML
             let results = msg.split("?");
             if(results[0] === "true"){
-                remind("登录成功");
-                setCookie("username",account.value);
-                setCookie("login", "true");
+                //判断是否为弹窗
                 if($("#dialog-modal"))
                     $("#dialog-modal").dialog("close");
-                $(".loading").css("display","none");
-                $(".btn-signin span").html("登  录");
+                //清空缓存
                 localStorage.setItem("addworkID","");
                 localStorage.setItem("goodsNumber",0);
-                getMyCartInfor();
 
-                //获取个人基础信息
-                $.ajax({
-                    url:"userInfor.php",
-                    data:{"regName": getCookie("username")},//携带的参数
-                    type: "GET",
-                    success(msg){
-                        let infor = msg.split("|");
-                        if(infor[0] === "true"){
-                            localStorage.setItem("userInfor",msg);
-                        }else{
-                            localStorage.setItem("userInfor","");
+                //获取购物车信息
+                $.when(getMyCartInfor()).done(function () {
+                    remind("登录成功");//提示登录成功
+                    setCookie("username",account.value);
+                    setCookie("login", "true");
+
+                    //还原html，关闭gif
+                    $(".loading").css("display","none");
+                    $(".btn-signin span").html("登  录");
+
+                    //获取个人基础信息
+                    $.ajax({
+                        url:"userInfor.php",
+                        data:{"regName": getCookie("username")},//携带的参数
+                        type: "GET",
+                        success(msg){
+                            let infor = msg.split("|");
+                            if(infor[0] === "true"){
+                                localStorage.setItem("userInfor",msg);
+                            }else{
+                                localStorage.setItem("userInfor","");
+                            }
                         }
-                    }
+                    });
+
+
                 });
             }else{
                 $(".loading").css("display","none");

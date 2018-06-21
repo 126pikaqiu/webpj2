@@ -1,5 +1,7 @@
-table td{
-    width:120px;
+.aside-left table td{
+    border: 1px solid black;
+    min-width:220px;
+    height:44px;
     text-align: center;
 }
 

@@ -143,7 +143,9 @@ ul.fr{
 textarea{
     height: 100px;
 }
-
+#error{
+    color: red;
+}
 
 
 

@@ -57,3 +57,7 @@ img.iconfont{
 #type{
   display: none;
 }
+
+#crumbs{
+  margin-left: 120px;
+}

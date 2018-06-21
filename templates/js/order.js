@@ -8,6 +8,25 @@ setInterval(function(){
 },100);
 
 document.ready = function () {
+
+    //设置足迹
+    let foot = JSON.parse(getCookie("foot"));
+    let temp = {};
+    for(let i in foot){
+        if(foot[i] === "订单详情"){
+            break;
+        }
+        temp[i] = foot[i];
+        let html = "<li><a class='hv-under' href='"+ footArry[foot[i]]  + "'> "+ foot[i] + "</a></li>>";
+        $("ol.crumbs").html($("ol.crumbs").html() + html)
+    }
+
+    let html = "<li>订单详情</li>";
+    $("ol.crumbs").html($("ol.crumbs").html() + html);
+    temp[Object.getOwnPropertyNames(temp).length] = "订单详情";
+    footArry["订单详情"] = window.location.search;
+    setCookie("foot",JSON.stringify(temp));
+
     if(!getUrlParam("orderID")){
         window.location.href = "index.html";
     }

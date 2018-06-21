@@ -106,6 +106,28 @@
     </div>
     <script src="templates/js/global.js"></script>
     <script src="templates/js/sform.js"></script>
+    <script type="text/javascript">
+        let temp = {};
+        if(getCookie("foot")){
+            //设置足迹
+            let foot = JSON.parse(getCookie("foot"));
+            for(let i in foot){
+                if(foot[i] === "登录"){
+                    break;
+                }
+                temp[i] = foot[i];
+                let html = "<li><a class='hv-under' href='"+ footArry[foot[i]]  + "'> "+ foot[i] + "</a></li>>";
+                $("ol.crumbs").html($("ol.crumbs").html() + html)
+            }
+            temp[Object.getOwnPropertyNames(temp).length] = "登录";
+        }else {
+            temp["1"] = "登录";
+        }
+
+        let html = "<li>登录</li>";
+        $("ol.crumbs").html($("ol.crumbs").html() + html);
+        setCookie("foot",JSON.stringify(temp));
+    </script>
   </body>
 </html>
 

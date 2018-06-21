@@ -5,7 +5,7 @@
     if($_SERVER["REQUEST_METHOD"] == 'POST'){
         if(isset($_FILES['upfile'])){
             $upload = new upLoad();
-            $upfile = $upload->uploadFile('upfile',$_SESSION["myID"]);
+            $upfile = $upload->uploadFile('upfile');
             if($upfile["filestat"] == "false"){
                 header("Location:upload.php?status=error");
             }else{

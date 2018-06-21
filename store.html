@@ -23,7 +23,7 @@
       <form action="register.php" class="rform" method="post">
         <div class="form-item">
           <label>用　户　名</label>
-          <input type="text" class="rform-account" name="regName" class="field" placeholder='请输入用户名'
+          <input type="text" class="rform-account" name="regName" placeholder='请输入用户名'
                  maxlength="20"/>
           <img src="templates/img/web_img/check.png" class="check" alt="">
         </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="form-item">
           <label>设 置 密 码</label>
-          <input type="password" name="pwd" class="rform-pwd" class="field" placeholder="请设置密码"
+          <input type="password" name="pwd" class="rform-pwd" placeholder="请设置密码"
                  maxlength="20"/>
           <img src="templates/img/web_img/check.png" class="check" alt="">
         </div>
@@ -43,7 +43,7 @@
         </div>
         <div class="form-item">
           <label>确 认 密 码</label>
-          <input type="password" name="pwdRepeat" class="rform-equalTopwd" class="field"
+          <input type="password" name="pwdRepeat" class="rform-equalTopwd"
                  placeholder="确认密码" maxlength="20"/>
           <img src="templates/img/web_img/check.png" class="check" alt="">
         </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="form-item">
           <label>手 机 号 码</label>
-          <input type="tel" name="tel" class="rform-mobile" class="field"
+          <input type="tel" name="tel" class="rform-mobile"
                  placeholder="请输入手机号码" maxlength="11"/>
           <img src="templates/img/web_img/check.png" class="check" alt="">
         </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="form-item">
           <label>邮　　　箱</label>
-          <input type="email" name="email" class="rform-email" class="field"
+          <input type="email" name="email" class="rform-email"
                  placeholder="请输入邮箱" />
           <img src="templates/img/web_img/check.png" class="check" alt="">
         </div>
@@ -187,7 +187,7 @@
           <img id="captionImg" src="templates/img/web_img/loadingicon.gif" alt="">
           <div id="show"></div>
         </div>
-        <div id="big"><img /></div>
+        <div id="big"><img src=""/></div>
       </div>
       <section id="secOne">
         <p class="description" id="description">坠落的烟火是惠斯勒比较得意的艺术作品,含有大量的亚洲元素,图中出现了日本和服以及中国瓷器</p>
@@ -196,7 +196,7 @@
         添加到购物车</span><img src="templates/img/web_img/loading.gif" class="loading1"></button><br>
         <table>
           <thead>
-          <th colspan="2">商品详情</th>
+          <tr><th colspan="2">商品详情</th></tr>
           </thead>
           <tbody>
           <tr>
@@ -225,31 +225,33 @@
     </div>
   </aside>
   <aside class="aside-right">
-    <table>
+    <table id="tb-artist">
       <thead>
-      <th>流行艺术家</th>
+      <tr><th>流行艺术家</th></tr>
       </thead>
       <tbody>
-      <tr><td><a href="javascript:;" class="hv-red">梵高</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">惠斯勒</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">毕加索</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">达芬奇</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">米开朗基罗</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">伦勃朗</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">塞尚</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">pablo Picasso</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Claude Monet</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Paul Gauguin</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">
+        Vincent Van Gogh</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Georges Seurat</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Paul Cezanne</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">
+        Edvard Munch</a></td></tr>
       </tbody>
     </table>
-    <table>
+    <table id="tb-genre">
       <thead>
-      <th>流行流派</th>
+      <tr><th>流行流派</th></tr>
       </thead>
       <tbody>
-      <tr><td><a href="javascript:;" class="hv-red">立体主义(Cubism)</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">野兽主义(Fauvism)</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">表现主义(Expressionism)</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">未来主义(Futurism)</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">机械主义(Mechanism)</a></td></tr>
-      <tr><td><a href="javascript:;" class="hv-red">超现实主义(Surrealism)</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Post-Impressionism</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Fauvism</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Impressionism</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Futurism</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Realism</a></td></tr>
+      <tr><td><a href="javascript:;" class="hv-red">Surrealism</a></td></tr>
       </tbody>
     </table>
 

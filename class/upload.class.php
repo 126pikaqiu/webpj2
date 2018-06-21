@@ -3,7 +3,7 @@
 class upLoad{
 
     //文件上传方法
-    function uploadFile($fileField,$userid){
+    function uploadFile($fileField,$artworkID = 0){
         $upfile = "";
         $files = $_FILES[$fileField];
         $fileName = $files['name'];
@@ -23,7 +23,7 @@ class upLoad{
                 //生成图片的名字
                 //连接到数据库
                 try{
-                    $db = new PDO('mysql:host=localhost;dbname=artworks','root',"");
+                    $db = new PDO('mysql:host=localhost;dbname=myproject','root',"");
                     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 }catch (PDOException $e){
                     print "Couldn't connect to the database;" . $e->getMessage();
@@ -31,12 +31,19 @@ class upLoad{
                 }
 
                 $p = $db->query("SELECT  `artworkID` FROM artworks WHERE `artworkID` > 452");
-                $name = count($p->fetchAll()) + 453;
+                if($artworkID){
+                    $name = $artworkID;
+                }else{
+                    $name = count($p->fetchAll()) + 453;
+                }
                 //设置新的文件名称，以保证上传的文件不重名
                 $newFileName = $name . "." . $fileExtendedName;
                 //使用move_uploaded_file()函数，将上传的临时文件保存到服务器指定的路径返回状态
                 $upfile["filename"] = $newFileName;
                 $upfile["filetype"] = $fileType;
+                if(file_exists($filePath . $newFileName)){
+                    unlink($filePath . $newFileName);
+                }
                 $upfile["filestat"] = @move_uploaded_file($fileTemp, $filePath . $newFileName) ? "true" : "false";
             }else{
                 $upfile["filename"] = "非法的文件类型。";

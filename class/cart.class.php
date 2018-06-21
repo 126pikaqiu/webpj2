@@ -11,7 +11,6 @@ class cart{
     //恢复数据
     function restore(){
         //从session中读取购物车数据
-        if(!isset($_SESSION["cart_items"])){
             //连接到数据库
             try{
                 $db = new PDO('mysql:host=localhost;dbname=myproject','root',"");
@@ -28,7 +27,7 @@ class cart{
                     $temp[$value["artworkID"]] = 1;
                 }
             $_SESSION["cart_items"] = serialize($temp);
-        }
+
         $cart_items = $_SESSION["cart_items"];//获取购物车记录
         $items = unserialize(stripslashes($cart_items));//将数据反序列化
         return $items;

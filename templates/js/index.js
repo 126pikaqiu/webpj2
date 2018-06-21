@@ -21,6 +21,7 @@ $(document).ready(function(){
     }
     createSlideBox();
     createItems();
+
     //所有查看按钮的点击
     $("input:button").click(function(){
         window.location.href =  $($(".art-img a")[$("input:button").index($(this))]).attr("href");

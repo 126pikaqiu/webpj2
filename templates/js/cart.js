@@ -1,4 +1,5 @@
 let ordArtworkIDs = [];
+let timeReleased = [];
 setInterval(function(){
   if(getCookie("login") !== "true")
     window.location.href = "index.html";
@@ -62,7 +63,6 @@ $(document).ready(function () {
     loadingHtml();
     updateMyCartFromDB();
     setEvent();
-    setSumMoney();
 });
 
 function loadingHtml(){
@@ -144,7 +144,7 @@ function addItem(id){
     $("#cart-list").html($("#cart-list").html() + html);
     let index = Object.getOwnPropertyNames(mycart).length;
     $.when(getInfoByKey("artworkID", id)).done(function(msg) {
-        $($(".cart-item-list")[index - 1]).attr("id", "work" + msg["id"]);
+        $($(".cart-item-list")[index - 1]).attr("id", "work" + msg["artworkID"]);
         $($(".p-goods img")[index - 1]).attr("src", "templates/img/art_img/" + msg["imageFileName"]);
         $($(".p-name>a")[index - 1]).attr("href", "store.html?id=" + msg["artworkID"]).html(msg["title"]);
         $($(".p-price strong")[index - 1]).html("$" + msg["price"]);
@@ -152,9 +152,13 @@ function addItem(id){
         setEvent();
     });
 }
+
+//设置总价
 function setSumMoney(type = 1){
-    if(type === 1)
+    if(type === 1){
         ordArtworkIDs = [];
+        timeReleased = [];
+    }
     let allMoney = 0;//金币总量
     //计算和设置总金额
     let items = $(".cart-item-list");
@@ -163,8 +167,11 @@ function setSumMoney(type = 1){
     let numberSeleted = 0;
     for(let i = 0; i < items.length; i++){
         if($(inputs[i]).is(":checked")){
-            if(type === 1)
+            if(type === 1){
                 ordArtworkIDs[ordArtworkIDs.length] = $($(".p-name>a")[i]).attr("href").split("id=")[1];
+                timeReleased[timeReleased.length] = JSON.parse(localStorage.getItem("work" + ordArtworkIDs[ordArtworkIDs.length - 1]))['timeReleased'];
+                console.log(timeReleased[timeReleased.length - 1]);
+            }
             allMoney += parseInt($(".p-price strong")[i].innerHTML.replace("$", ""));
             numberSeleted ++;
         }
@@ -212,6 +219,9 @@ function updateMyCartFromDB(){
             $($(".p-goods img")[index]).attr("src", "templates/img/art_img/" + msg["imageFileName"]);
             $($(".p-name>a")[index]).attr("href","store.html?id=" +  msg["artworkID"]).html(msg["title"]);
             $($(".p-price strong")[index++]).html("$" + msg["price"]);
+            if(index === $('.cart-item-list').length){
+                setSumMoney();
+            }
         });
 }
 }
@@ -250,15 +260,24 @@ $(".btn-area a").click(function(){
     let money = parseInt(infor[4]);
     if(money > parseInt($("span.sumPrice").html().replace("$",""))){
         //检查是否被购买
-        $.when(getRoot(ordArtworkIDs)).done(function (msg) {
+        $.when(getRoot(ordArtworkIDs,timeReleased)).done(function (msg) {
             msg = eval(msg);
             if(msg.length){
                 let remind1 = '商品';
+                let remind2 = '商品';
                 for(let i = 0; i < msg.length; i++){
-                    remind1 += JSON.parse(localStorage.getItem("work" + msg[i]))["title"] + ",   ";
+                    if(msg[i].charAt(0) === "c"){
+                        remind2 += JSON.parse(localStorage.getItem("work" + msg[i].substr(1)))["title"] + ",   ";
+                    }else{
+                        remind1 += JSON.parse(localStorage.getItem("work" + msg[i]))["title"] + ",   ";
+                    }
                 }
                 if(remind1 !==  '商品'){
-                    remind(remind1 + "已经被购买或撤回，现在无货。购买无效");
+                    if(remind2 !==  '商品'){
+                        remind(remind1 + "已经被购买或撤回，现在无货。购买无效\n" + remind2 + "信息发生了修改,请注意刷新" );
+                    }else{
+                        remind(remind1 + "已经被购买或撤回，现在无货。购买无效");
+                    }
                 }
             }else{
                 remind("下单成功。余额剩余" + (money - parseInt($(".sumPrice").html().replace("$",""))));
@@ -311,12 +330,5 @@ function emptyMyCart() {
 $(".remove-batch").click(function () {
     emptyMyCart();
 });
-
-function checkCart() {
-    let brought = [];
-
-
-    return brought;
-}
 
 

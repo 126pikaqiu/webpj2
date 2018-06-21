@@ -1,6 +1,8 @@
 
 let footArry = {"首页":"index.html","我的购物车":"cart.html","搜索":"search.html",
-    "商品详情":"store.html","个人信息":"userInfor.html","关于艺家":"artStore.html"};
+    "商品详情":"store.html","个人信息":"userInfor.html","登录":"userInfor.html","注册":"userInfor.html",
+    "艺家":"artStore.html",'发布艺术品':"upload.php",'修改艺术品':"revise.php"};
+
 document.ready = function(){
     if(!localStorage.getItem("goodsNumber")){
         localStorage.setItem("goodsNumber","0");
@@ -84,7 +86,9 @@ $(".sign").click(function(){
   $("#dialog-signin").css("display","block");
   modal_dialog("登录")
 });
-//弹窗登录
+
+
+//注册转登录
 $(".re-signin").click(function(){
   $("#dialog-register").css("display","none");
   $("#dialog-signin").css("display","block");
@@ -98,11 +102,14 @@ $(".register").click(function(){
   modal_dialog("注册");
 });
 
+//enter搜索跳转
 $("#searchTrigger").keydown(function (e) {
     if (e.keyCode === 13) {
         window.location.href = "search.html?searchkey=" + encodeURI($(this).val());
     }
 });
+
+//搜索跳转
 $(".searchTrigger").click(function () {
     window.location.href = "search.html?searchkey=" + encodeURI($("#searchTrigger").val());
 });

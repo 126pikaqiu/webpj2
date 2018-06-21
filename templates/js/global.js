@@ -2,14 +2,14 @@
 function setCookie(c_name,value,expiredays)
 {
     let exdate=new Date();
-    exdate.setDate(exdate.getDate() + expiredays);
+    exdate.setTime(exdate.getTime() + expiredays);
     document.cookie = c_name+ "=" + value +
         ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
 }
 
 
 //通过关键词访问艺术品
-function getInfoByKey(key, value){//key为获取信息的关键词，value为值，index是为搜索专门设置的索引
+function getInfoByKey(key, value){//key为获取信息的关键词，value为值
 
     if(key === "artworkID" && localStorage.getItem("work" + value)){
         return JSON.parse(localStorage.getItem("work" + value));
@@ -26,12 +26,10 @@ function getInfoByKey(key, value){//key为获取信息的关键词，value为值
             if(!msg){
                 window.location = "index.html";
             }
-            if(!localStorage.getItem("work" + msg["artworkID"])){
-                localStorage.setItem("work" + msg["artworkID"], JSON.stringify(msg));
-            }
+            localStorage.setItem("work" + msg["artworkID"], JSON.stringify(msg));
             defer.resolve(msg);
         },
-        });
+    });
     return defer.promise();
 }
 
@@ -109,7 +107,11 @@ function getMyCartInfor(){
         url:"handleCart.php",
         type: "GET",
         success(msg){
-            console.log(msg);
+            if(!msg){//为空
+                localStorage.setItem("goodsNumber",0);
+                localStorage.setItem("mycart", JSON.stringify({}));
+                return;
+            }
             msg = JSON.parse(msg);
             let temp = {};
             for(let i in msg){
@@ -136,15 +138,17 @@ function updateMyDB(){
 }
 
 //购买权限判断
-function getRoot(artworkIDs){
+function getRoot(artworkIDs,timeReleased){
+    console.log(timeReleased);
     let defer = $.Deferred();
     $.ajax({
         url:"order.php",
-        data:{"artworkID":artworkIDs},//携带的参数
+        data:{"artworkID":artworkIDs,"timeReleased":timeReleased},//携带的参数
         type: "GET",
         success(msg){
             defer.resolve(msg);
-        },
+            console.log(msg);
+        }
     });
     return defer.promise();
 }

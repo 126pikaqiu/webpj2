@@ -11,7 +11,7 @@ if(getUrlParam("status")){
         temp["price"] = getCookie("re-price");
         temp["description"] = getCookie("re-description");
         temp["artist"] = getCookie("re-artist");
-        temp["view"] = 0;
+        temp["view"] = JSON.parse(localStorage.getItem("work" + temp["artworkID"]))["view"];
         temp["artworkID"] = getUrlParam("id").split(".")[0];
         temp["imageFileName"] = getUrlParam("id");
         localStorage.setItem("work" + temp["artworkID"],JSON.stringify(temp))
@@ -62,7 +62,7 @@ $("#cancel").click(function () {
     return false;
 });
 $("#submit").click(function(){
-    if(!($("#chooseImage").val() || getUrlParam("id"))){
+    if(!$('#cropedBigImg').attr('src')){
         showerror("请选择图片");
         return false;
     }else if(!$("#title").val()){
@@ -97,6 +97,11 @@ $("#submit").click(function(){
     setCookie("re-price",$("#price").val());
     setCookie("re-description", $("#description").val());
     setCookie("re-artist",$("#author").val());
+    if(!$('#chooseImage').val()){
+        $("#msg").val("nochange")
+    }else{
+        $("#msg").val("change")
+    }
 });
 
 function showerror(s){

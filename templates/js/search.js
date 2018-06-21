@@ -9,7 +9,6 @@ $(".paN").click(function(){
 });
 
 document.ready = function () {
-    console.log(getCookie("foot"));
     let temp = {};
     if(getCookie("foot")){
         //设置足迹
@@ -30,7 +29,15 @@ document.ready = function () {
     let html = "<li>搜索</li>";
     $("ol.crumbs").html($("ol.crumbs").html() + html);
     setCookie("foot",JSON.stringify(temp));
-
+    if(getUrlParam('artist')){
+        $('#key').val("作者为" + getUrlParam('artist'));
+    }
+    if(getUrlParam('genre')){
+        $('#key').val($('#key').val() + "流派为" + getUrlParam('genre'));
+    }
+    if(getUrlParam('searchkey')){
+        $('#key').val(getUrlParam('searchkey'));
+    }
     loadingHtml();
     changePageTo(1);
 };
@@ -158,7 +165,12 @@ $(".p-skip a").click(function(){
 });
 
 $("#search").click(function(){
+    pageNum = 1;
     search(1);
+    $(".paN").html(function(n){
+        return n + 1 +((parseInt(pageNum / 12)) * 12);
+    });
+    changeStyle($('.paN')[0]);
 });
 
 //改变页数的css
@@ -199,21 +211,23 @@ function search(page){
             $($(".lay-item a")[i]).attr("href","store.html?id=" + msg[i]["artworkID"]);
             $($(".lay-item img")[i]).attr("src","templates/img/art_img/" + msg[i]["imageFileName"]);
             $($(".lay-title")[i]).html(msg[i]["title"]);
+            $($("button.lay-bt")[i]).click(function(){
+                window.location.href = "store.html?id=" + msg[i]["artworkID"];
+            });
             $($(".author")[i]).html(msg[i]["author"]);
             $($(".hot")[i]).html(msg[i]["view"]);
             $($(".lay-des")[i]).html(msg[i]["description"].substr(0,90) + "...");
         }
+        $(".paN").removeClass("dis-none");
         let itemsNumber = parseInt(localStorage.getItem("itemsNumber"));
         let allPageNumber = itemsNumber % 9 === 0 ? itemsNumber/9 : parseInt(itemsNumber/9) + 1;
         $(".lay-footer .p-skip em b").html(allPageNumber);
-        if(allPageNumber< 12){
-            for(let i = allPageNumber; i < 12; i++){
+        if(allPageNumber < 12 || pageNum > 12){
+            for(let i = allPageNumber % 12; i < 12; i++){
                 $($(".paN")[i]).addClass("dis-none");
             }
         }
-        if(key){
-            $(".search-result").html("共搜索到" + localStorage.getItem("itemsNumber") + "个结果");
-        }
+        $(".search-result").html("共搜索到" + localStorage.getItem("itemsNumber") + "个结果");
         if(!itemsNumber){
             $(".lay-item").addClass("dis-none")
         }
@@ -225,7 +239,9 @@ function search(page){
 
     })
 }
-
+$(".lay-head input").change(function () {
+   search(1);
+});
 //分词生成sql语句
 function checkKey(key) {
     if(!key){
@@ -234,16 +250,17 @@ function checkKey(key) {
     let result = {};
     result["unsure"] = '';
     key = key.toLowerCase();
-    key = key.replace("少于","<").replace("为","").replace("是","").replace("=","").replace("artisit","&artisit=").replace("title","&title=").
-    replace("description","&description=").replace("view","&view=").replace("price","&price=").replace("year","&year=").
-    replace("价格","&price=").replace("年份","&year=").replace("多于",">").
-    replace("小于","<").replace("大于",">").replace("作者",'&artisit=').replace("作品名","title=").
-    replace("描述",'&description=').replace("热度",'&view=');
+    key = key.replace("少于","<").replace("是","").replace("为","").replace("是","").replace("=","").replace("artisit","&artisit=").replace("title","&title=").
+    replace("description","&description=").replace("view","&view=").replace("price","&price=").replace("year","&yearOfWork=").replace("genre","&genre=").
+    replace("价格","&price=").replace("年份","&yearOfWork=").replace("多于",">").
+    replace("小于","<").replace("大于",">").replace("作者",'&artist=').replace("作品名","title=").
+    replace("描述",'&description=').replace("热度",'&view=').replace("流派",'&genre=');
     let keys = key.split("&");
     for(let i in keys){
         if(keys[i].indexOf("=") === -1){
             if(/[0-9]/.test(keys[i])){
-                result['price'] = keys[i].match(/\d{1,}/);//当作价格
+                result['price'] = keys[i].match(/\d{1,}/)[0];//当作价格
+                continue;
             }
             result["unsure"] += keys[i].replace(/\d/,"");
         }else{
@@ -257,15 +274,18 @@ function checkKey(key) {
         if(i === "unsure"){
             if(result[i])
                 sql += " AND (artist LIKE '%" + result[i] + "%' or title LIKE '%"+ result[i] + "%' or description LIKE '%" + result[i] + "%')";
-        }else if(i === "price" || i === "view" || i === "year"){
+        }else if(i === "price" || i === "view" || i === "yearOfWork"){
             let number = result[i].replace(/[^0-9]/ig, "");
+            if(!number){
+                continue;
+            }
             if((index = result[i].indexOf(">")) !== -1|| (index = result[i].indexOf("<")) !== -1){
                 sql += " AND " + i + result[i].substr(index,index + 1) + number;
             }else{
                 sql += " AND " + i + '=' + number;
             }
         }else{
-            sql += ' OR ' + i + " LIKE '%" + result[i] + "%' ";
+            sql += ' AND ' + i + " LIKE '%" + result[i] + "%' ";
         }
     }
     return sql;

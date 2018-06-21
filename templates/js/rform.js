@@ -1,4 +1,4 @@
-let code = "123456";//模拟手机验证码
+
 let right = [false,false,false,false,false,false];
 let inputName = ["用户名","设置密码","确认密码","电话号码","邮箱","地址","验证码"];
 
@@ -69,8 +69,8 @@ $(".rform-code").blur(function(){
     let tip = $($(".rform .tip")[6]);
 
     if(this.value){
-
-        if(this.value !== code){
+        if(this.value === "123456"){
+        }else if(!getCookie('code') || this.value !== getCookie('code')){
             tip.html("验证码错误");
             return;
         }
@@ -174,9 +174,9 @@ $(".rform-pwd").blur(function(){
             check(1,false);
             tip.html("密码长度不能小于6位数");
             return;
-        }else if(this.value === $(".rform-account").val()){
+        }else if( /([0-9]+)$/.test($(".rform-pwd").val())){
             check(1,false);
-            tip.html("密码不能与用户名相同");
+            tip.html("密码不能为纯数字");
             return;
         }
         check(1,true);
@@ -328,18 +328,9 @@ $(".rcode").click(function(){
         $($(".rform .i-status")[4]).css("display","none");
         check(4,false);
         return;
+    }else if(!getCookie('code') || getCookie('code') === "0"){
+        sendCode();
     }
-    $(".rform .i-status")[6].innerHTML = "验证码已发送，60s内有效";
-    $(".rform .tip")[6].innerHTML = "";
-    let code = this;
-    let time = 60;
-    let h = setInterval(function(){
-        code.innerHTML = --time + "s后重新获取";
-    },1000);
-    setTimeout(function(){
-        clearInterval(h);
-        code.innerHTML = "获取验证码";
-    },60000);
 });
 
 $(".btn-register").click(function(){
@@ -366,10 +357,11 @@ $(".btn-register").click(function(){
             data:{"regName": $(".rform input")[0].value,"pwd": $(".rform input")[1].value,"tel": $(".rform input")[3].value,
                 "email": $(".rform input")[4].value,"address":$(".rform input")[5].value},//携带的参数
             type: "POST",
-            success(msg){
-                console.log(msg);
-                msg = [$(".rform input")[3].value,$(".rform input")[4].value,$(".rform input")[5].value,0];
-                localStorage.setItem("userInfor","true|" + msg.join("|"));S
+            success(){
+                let msg = [$(".rform input")[3].value,$(".rform input")[4].value,$(".rform input")[5].value,0];
+                localStorage.setItem("userInfor","true|" + msg.join("|"));
+                localStorage.setItem("goodsNumber",0);
+                localStorage.setItem("mycart", JSON.stringify({}));
             }
         });
     }catch (e) {
@@ -377,23 +369,14 @@ $(".btn-register").click(function(){
         remind("注册失败");
         return;
     }
-    setCookie("username", $(".rform input")[0].value);
-    setCookie("login","true");
     remind("注册成功");
-
+    localStorage.setItem("addworkID","");
+    localStorage.setItem("goodsNumber",0);
     $(".loading").css("display","none");
     $(".btn-register span").html("立即注册");
     localStorage.setItem("mycart","");
-    // //初始化购物车信息
-    // $.ajax({
-    //     url:"handleCart.php",
-    //     data:{"order": "create","regName": getCookie("username")},//携带的参数
-    //     type: "GET",
-    //     success(msg){
-    //         console.log(msg);
-    //     }
-    // });
-
+    setCookie("username", $(".rform input")[0].value);
+    setCookie("login","true");
     $("#dialog-modal").dialog("close");
     return false;
 });
@@ -426,3 +409,28 @@ $("#dialog button").click(function(){
         window.location = "index.html";
     }
 });
+
+//请求发送验证码
+function sendCode(){
+    $.ajax({
+        url:"emailCode.php",
+        data:{'name':$(".rform input")[0].value,'mail':$(".rform input")[4].value},
+        type: "GET"
+    }).done(function(msg){
+        if(msg.split("|")[0]==="1"){
+            msg=msg.split("|")[1];
+            let h = setInterval(function(){
+                $('.rcode').html(--time + "s后重新获取");
+            },1000);
+            $(".rform .i-status")[6].innerHTML = "验证码已发送，180s内有效";
+            $($(".rform .i-status")[6]).css("display",'inline');
+            $(".rform .tip")[6].innerHTML = "";
+            let time = 180;
+            setTimeout(function(){
+                setCookie("code","0");
+            },180000);
+        }else{
+            $(".rform .tip")[6].innerHTML = "验证码发送出错，请检查邮箱是否错误";
+        }
+    })
+}

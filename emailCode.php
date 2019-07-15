@@ -51,10 +51,10 @@ function sendMail($to,$title,$content,$name='艺家用户'){
     $mail->FromName = '艺家服务';
 
     //smtp登录的账号 这里填入字符串格式的qq号即可
-    $mail->Username ='1260968291@qq.com';
+    $mail->Username ='你的邮箱';
 
     //smtp登录的密码 使用生成的授权码（就刚才叫你保存的最新的授权码）
-    $mail->Password = 'ugqrckkqotxjfhfd';
+    $mail->Password = '你的授权码';
 
     //设置发件人邮箱地址 这里填入上述提到的“发件人邮箱”
     $mail->From = '1260968291@qq.com';
